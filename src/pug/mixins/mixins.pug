@@ -1,0 +1,34 @@
+mixin icon(name, className)
+  - var icon = require(`images/icons/${name}.svg`);
+  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+    use(xlink:href=icon.url)
+
+mixin image(path, className)
+  img(src=require(`images/${path}`) class=className)
+
+mixin nav(addClass)
+  nav.nav(class= addClass)
+    ul.nav__list
+      each item in ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"]
+        li.nav__item
+          a.nav__link(href="#") #{item}
+
+mixin social(addClass)
+  - 
+    var socialItems = [
+      {
+        icon: 'insta',
+        href: 'https://www.instagram.com/'
+      },{
+        icon: 'vk',
+        href: 'https://www.vk.com/'
+      },{
+        icon: 'github',
+        href: 'https://www.github.com/'
+      }
+    ]
+  ul.social(class= addClass)
+    each item in socialItems
+      li.social__item
+        a.social__link(href= item.href)
+          +icon(item.icon, 'social__icon') 
