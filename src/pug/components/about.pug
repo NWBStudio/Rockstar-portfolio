@@ -1,0 +1,27 @@
+-
+    var tableArr = [
+                    {
+                        title: "Проживаю:",
+                        content: "Ессентуки"
+                    },{
+                        title: "Возраст:",
+                        content: "23 года"
+                    },{
+                        title: "Родился:",
+                        content: "28 декабря 1996"
+                    }
+                ]
+
+section.section.about
+    container.about__inner
+        +image("content/user.jpg", "about__avatar")
+        table.about__table
+            each obj in tableArr
+                tr.about__table-row
+                    th.about__table-cell.about__table-cell--header= obj.title
+                    td.about__table-cell= obj.content
+        .about__content
+            span.about__intro Привет меня зовут
+            h2.title.title Владимир Куприенков
+            p.about__text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+        .about__note Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
