@@ -1,0 +1,34 @@
+.skill {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.skill__shape {
+    width: 150px;
+    height: 150px;
+    fill: transparent;
+    stroke: $light-grey;
+    stroke-width: 10px;
+    transform: rotate(180deg);
+}
+
+.skill__circle--position--above {
+    stroke: $blue;
+    stroke-width: 20px;
+    stroke-dasharray: 502; // Приблизительный расчёт по формуле 2 * π * R  = C <-- Это оно
+    stroke-dashoffset: 251;
+}
+
+.skill__title {
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: $bold;
+    color: $font-dark-purple;
+    opacity: 0.5;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
