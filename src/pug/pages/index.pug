@@ -4,11 +4,13 @@ block title
         title Главная страница | Куприенков Портфолио
 
 block content
-  main.welcome         
+  .welcome         
     include ../components/hero
     include ../components/about
   include ../components/values
-  include ../components/works 
+  include ../components/works
+  .outro
+    include ../components/reviews
 //- .maincontent
 //-   +image('content/user.jpg', 'user-pic')
 //-   +icon('link', 'link-class')

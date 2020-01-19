@@ -15,11 +15,9 @@ section.works
                             li.previews__item
                               +image("content/preview" + `${i}` + ".jpg", "previews__pic")      
                 .slider__buttons
-                    button.slider__buttons-item.slider__buttons-item--slide--next(type="button")
-                        +icon('arrow', 'slider__buttons-icon')
-                    button.slider__buttons-item.slider__buttons-item--slide--prev(type="button")
-                        +icon('arrow', 'slider__buttons-icon')
-                .slider__counter 1 
+                    +arrow-btn('left', 'slider__buttons-item', 'greyish')
+                    +arrow-btn('right', 'slider__buttons-item', 'greyish')
+                .slider__counter 1
             .works__right
               .works__tags
                 - var tags = ['HTML', 'CSS', 'Javascript']
@@ -27,9 +25,10 @@ section.works
                     each tag in tags
                         li.tags__item #{tag}
               .works__info
-                h3.works__info-title Сайт школы
+                h3.works__info-title Сайт школы образования
                 .works__info-text
-                  p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam dolorum nulla placeat cumque nostrum commodi ad numquam dolores distinctio officiis molestiae, assumenda omnis ut voluptas itaque eligendi mollitia earum. Tenetur.
-                a.iconed-link
-                  .iconed-link__icon
-                  .iconed-link__text                                                    
+                  p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                a.iconed-link(href="#")
+                  +icon('link', 'iconed-link__icon')
+                  span.iconed-link__text Посмотреть сайт 
+                                                                      
