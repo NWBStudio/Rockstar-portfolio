@@ -1,17 +1,36 @@
 .values {
     position: relative;
-    background-color: $white;
+    background: $white url("../images/bg/graffiti.png") no-repeat;
+    background-position: -160px 50%;
     padding: 135px 0 145px 0;
+    &::before {
+        @include bg-slice (548px, 1223px, "../images/bg/Guitar.png");
+        left: 2%;
+        top: -435px;
+    }
 }
 
-.values__title {
+.values__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.values__info {
+    max-width: 600px;
+    margin-bottom: 90px;
+}
+
+.values__info-title {
     font-size: 30px;
     line-height: 36px;
     font-weight: $bold;
     color: $font-dark-purple;
+    margin-bottom: 60px;
 }
 
-.values__info {
+.values__info-text {
     font-weight: $semibold;
     color: $font-dark-purple;
     opacity: 0.5;
@@ -20,4 +39,6 @@
 .values__skills {
     display: flex;
     flex-direction: column;
+    align-self: flex-end;
+    margin-right: 7.5%;
 }

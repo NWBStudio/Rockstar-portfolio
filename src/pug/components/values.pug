@@ -4,9 +4,10 @@ section.values
             polygon(points="0,0 0,100 1400,100")
         svg.triangles__item(viewBox="0 0 400 100" preserveAspectRatio="none")
             polygon(points="0,100 400,100 400,0")
-    .container
-        h3.values__title Чем я могу быть полезен вам
-        p.values__info Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+    .container.values__inner
+        .values__info
+          h3.values__info-title Чем я могу быть полезен вам
+          p.values__info-text Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
         ul.values__skills
               - 
                 var skills = [
