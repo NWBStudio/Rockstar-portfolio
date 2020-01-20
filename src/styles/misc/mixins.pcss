@@ -31,3 +31,14 @@
   position: absolute;
   z-index: 10;
 }
+
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &:-moz-placeholder           { @content; }
+  &::-moz-placeholder          { @content; }
+  &:-ms-input-placeholder      { @content; }
+  &:focus::-webkit-input-placeholder { color: transparent; }
+  &:focus::-moz-placeholder          { color: transparent; }
+  &:focus:-moz-placeholder           { color: transparent; }
+  &:focus:-ms-input-placeholder      { color: transparent; }  
+}

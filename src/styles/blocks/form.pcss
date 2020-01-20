@@ -1,0 +1,62 @@
+$form-width: 850px;
+$input-width: 375px;
+$icon-height: 30px;
+
+.form {
+    width: $form-width;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form__label {
+    border-bottom: 2px solid $white;
+    margin-bottom: 40px;
+    &:last-child {
+        margin-bottom: 55px;
+    }
+}
+
+.form__label-icon {
+    width: 30px;
+    height: $icon-height;
+    fill: $light-purple;
+    &--textarea {
+        align-self: flex-start;
+    }
+}
+
+.form__label-title {
+    font-weight: $semibold;
+    opacity: 0.3;
+    margin-bottom: 25px;
+}
+
+.form__input-line {
+    display: flex;
+    align-items: center;
+}
+
+.form__input{
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    line-height: 48px;
+    font-weight: $bold;
+    color: $white;
+    width: $input-width;
+    padding-left: 10px;
+    @include placeholder {
+        color: $white;
+    }
+}
+
+
+.form__textarea {
+    line-height: 36px;
+    width: $form-width;
+    margin-right: 0;
+    resize: none;
+    padding-right: $input-width;
+    padding-bottom: 10px;
+}
