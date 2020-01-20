@@ -1,0 +1,40 @@
+$icon-width: 75px;
+
+.review{
+    width: 350px;
+    position: relative;
+}
+
+.review__icon {
+    width: $icon-width;
+    fill: $dark-purple;
+    position: absolute;
+    top: 0;
+    left: calc(($icon-width + 15px) * -1);
+}
+
+.review__text {
+    margin-bottom: 25px;
+    height: 120px; //сделал фиксированную высоту, потому что судя по созвону текст будет прокручиваемым
+    overflow: hidden; 
+}
+
+.review__text,
+.review__role {
+    font-weight: $semibold;
+    opacity: 0.5;
+}
+
+.review__avatar {
+    width: 77px;
+    height: 77px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 30px;
+}
+
+.review__name {
+    font-size: 18px;
+    line-height: 48px;
+    font-weight: $bold;
+}

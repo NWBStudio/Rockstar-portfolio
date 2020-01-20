@@ -30,7 +30,7 @@ mixin social(addClass)
   ul.social(class= addClass)
     each item in socialItems
       li.social__item
-        a.social__link(href= item.href)
+        a.social__link(href= item.href target="_blank")
           +icon(item.icon, 'social__icon') 
 
   mixin arrow-btn(direction, addClass, color)
