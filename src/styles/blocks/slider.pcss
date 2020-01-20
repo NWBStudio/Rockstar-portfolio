@@ -33,11 +33,29 @@ $controls-height: 100px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
     z-index: 20;
 }
 
 
+.slider__buttons-item{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--active {
+        .arrow-button__icon {
+            fill: $white;
+        }
+    }
+    &:hover {
+        background-color: $amber;
+        .arrow-button__icon {
+            fill: $white;
+        }
+    }
+
+}
 .slider__counter {
     position: absolute;
     color: $light-grey;

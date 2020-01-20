@@ -15,8 +15,8 @@ section.works
                             li.previews__item
                               +image("content/preview" + `${i}` + ".jpg", "previews__pic")      
                 .slider__buttons
+                    +arrow-btn('right', 'slider__buttons-item slider__buttons-item--active', 'greyish')
                     +arrow-btn('left', 'slider__buttons-item', 'greyish')
-                    +arrow-btn('right', 'slider__buttons-item', 'greyish')
                 .slider__counter 1
             .works__right
               .works__tags

@@ -1,8 +1,16 @@
 .nav__item {
     display: inline-flex;
     margin-right: 60px;
+    padding: 25px;
     &:last-child {
         margin-right: 0;
+    }
+    &:hover {
+        .nav__link {
+            color: $amber;
+        }
+        border-bottom: 3px solid $amber;
+        margin-bottom: -3px;
     }
 }
 
