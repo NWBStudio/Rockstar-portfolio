@@ -3,11 +3,34 @@
     margin-left: 40px;
     &:first-child {
         margin-left: 0;
-    }   
+    }
+
 }
 
 .social__icon {
     width: 26px;
     height: 26px;
     fill: $icon-dark-purple;
+}
+
+.social--rounded {
+    .social__link {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 1px solid $icon-dark-purple;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.social--color--dark-magenta {
+    opacity: 0.3;
+    .social__icon {
+        fill: $dark-magenta;
+    }
+    .social__link {
+        border-color: $dark-magenta;
+    }
 }

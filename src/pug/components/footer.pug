@@ -1,2 +1,16 @@
 footer.footer
     .container.footer__inner
+        div.copyright.footer__copyright 
+            +icon("copyright", "copyright__icon")
+            span.copyright__text 2020
+        .footer__user
+            h3.footer__user-name Владимир Куприенков
+            span.footer__user-text Личный сайт#[br] веб-разработчика
+        .footer__content
+            +nav("footer__nav")
+            .footer__info
+                p.footer__info-text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                +social("social--rounded footer__social social--color--dark-magenta")
+            blockquote.quote.footer__quote
+                p.quote__text Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                cite.quote__author Martin Golding   
