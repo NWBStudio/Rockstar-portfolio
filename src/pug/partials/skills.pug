@@ -1,21 +1,23 @@
 script(type="text/x-template")#skills-list
     ul.skills
-        -    
-            var skills = [
-                ['Front-end', ['HTML5', 'CSS3', 'Javascript', 'Jquery и Vue.js']],
-                ['Workflow', ['GIT', 'Terminal', 'Gulp', 'Webpack']],
-            ]
-        each item in skills 
-            li.skills-row 
-                h3.skills-row__title #{item[0]}
-                ul.skills-row__list
-                    each skill in item[1]
-                        li.skills-row__item
-                            .skill
-                                svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
-                                    circle(r="80" cx="100" cy="100").skill__circle.skill__circle--position--under
-                                    circle(r="80" cx="100" cy="100").skill__circle.skill__circle--position--above
-                                    linear-gradient()
-                                .skill__title #{skill}
+        li.skills-item(v-for="row in skills") <!--Перебор массива skills объявленного в data-->
+            //- Vue автоматом переводит из camelCase в kebab-case
+            skills-row(:row="row") 
+            //- Передача в свойство row каждого элемента row массива skills 
 script(type="text/x-template")#skills-row
-script(type="text/x-template")#skill                                
+    .skills-row 
+        h3.skills-row__title {{row.skillsGroup}}
+        ul.skills-row__list
+            li.skills-row__item(v-for="(skillPercent, skillName) in row.skills") <!--Порядок параметров (значение, индекс/ключ)-->
+                skill(:skillName = "skillName" :skillPercent = "skillPercent")
+
+script(type="text/x-template")#skill
+    .skill
+        svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
+            circle(r="80" cx="100" cy="100").skill__circle.skill__circle--position--under
+            circle(r="80" cx="100" cy="100" ref="color-circle" stroke="url(#gradient)").skill__circle.skill__circle--position--above
+            linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0")
+                stop(offset="0%" stop-color="#4d87ee")
+                stop(offset="100%" stop-color="#243fe5")
+        .skill__title {{skillName}}                                 
+
