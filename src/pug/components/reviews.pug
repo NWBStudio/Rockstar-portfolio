@@ -3,28 +3,13 @@ section.reviews
         .reviews__top-row
             h2.section-title.reviews__title Что обо мне говорят
             .switcher
-                +arrow-btn('left', 'switcher__item', 'white')
-                +arrow-btn('right', 'switcher__item', 'white')
+                +arrow-btn('left', 'switcher__item', 'white', {"@click": "previous", ":disabled": "true"})
+                +arrow-btn('right', 'switcher__item', 'white', {"@click": "next", ":disabled": "false"})
         ul.reviews__list
-            -
-                var reviews = [
-                    {
-                        text: "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!",
-                        avatar: "Dmitry",
-                        name: "Ковальчук Дмитрий",
-                        role: "Основатель Loftschool"
-                    },{
-                        text: "Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах",
-                        avatar: "Vladimir",
-                        name: "Владимир Сабанцев",
-                        role: "Преподаватель"
-                    }
-                ]
-            each item in reviews
-                li.reviews__item
-                    .review
-                        +icon('quote', 'review__icon')
-                        p.review__text #{item.text}
-                        +image("content/reviews" + item.avatar + ".jpg", "review__avatar")
-                        .review__name #{item.name}
-                        .review__role #{item.role}
+            li.reviews__item(v-for="review in reviews")
+                .review
+                    +icon('quote', 'review__icon')
+                    p.review__text  {{review.text}}
+                    +image("content/reviewsDmitry.jpg", "review__avatar")
+                    .review__name {{review.name}}
+                    .review__role {{review.role}}

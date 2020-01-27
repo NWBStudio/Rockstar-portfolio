@@ -33,6 +33,6 @@ mixin social(addClass)
         a.social__link(href= item.href target="_blank")
           +icon(item.icon, 'social__icon') 
 
-  mixin arrow-btn(direction, addClass, color)
-    button.arrow-button(type="button" class= 'arrow-button--slide--' + direction class= 'arrow-button--color--' + color class= addClass )
+  mixin arrow-btn(direction, addClass, color, attr)
+    button.arrow-button(type="button" class= 'arrow-button--slide--' + direction class= 'arrow-button--color--' + color class= addClass)&attributes(attr)
       +icon('arrow', 'arrow-button__icon')
