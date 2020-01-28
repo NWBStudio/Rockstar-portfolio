@@ -1,8 +1,10 @@
 $icon-width: 74px;
+$icon-margin: 20px;
 
 .review{
     width: 350px;
     position: relative;
+    margin-left: calc($icon-width + $icon-margin);
 }
 
 .review__icon {
@@ -10,7 +12,7 @@ $icon-width: 74px;
     fill: $dark-purple;
     position: absolute;
     top: 0;
-    left: calc(($icon-width + 16px) * -1);
+    left: calc(($icon-width + $icon-margin) * -1);
 }
 
 .review__text {

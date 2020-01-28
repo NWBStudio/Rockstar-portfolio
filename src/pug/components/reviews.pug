@@ -1,15 +1,15 @@
-section.reviews
+section.reviews#reviews
     .container.reviews__inner
         .reviews__top-row
             h2.section-title.reviews__title Что обо мне говорят
             .switcher
-                +arrow-btn('left', 'switcher__item', 'white', {"@click": "previous", ":disabled": "true"})
-                +arrow-btn('right', 'switcher__item', 'white', {"@click": "next", ":disabled": "false"})
-        ul.reviews__list
-            li.reviews__item(v-for="review in reviews")
+                +arrow-btn('left', 'switcher__item', 'white', {"@click": "previous", ":disabled": "true", "id": "reviewsPrev"})
+                +arrow-btn('right', 'switcher__item', 'white', {"@click": "next", ":disabled": "false", "id": "reviewsNext"})
+        flickity.reviews__list(ref="flickity" :options="flickityOptions")
+            .reviews__item(v-for="review in reviews")
                 .review
                     +icon('quote', 'review__icon')
                     p.review__text  {{review.text}}
-                    +image("content/reviewsDmitry.jpg", "review__avatar")
+                    image.review__avatar(:src="review.avatar")
                     .review__name {{review.name}}
                     .review__role {{review.role}}
