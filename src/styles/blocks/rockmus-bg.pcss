@@ -1,19 +1,10 @@
-.rockfest-bg {
+.rockmus-bg {
     background: $bg-purple;
     position: relative;
     overflow: hidden;
 }
 
-.parallax-rockfest{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-
-.parallax-rockfest__layer {
+.parallax-rockmus__layer {
     position: absolute; //слои расположены друг над другом на одном и том же месте, а манипулируем местоположением картинок внутри них
     top: 0;
     left: 0;
@@ -21,53 +12,42 @@
     height: 100%;
     will-change: transform; //перекидывает обработку с проца на GPU, добавляет оптимизации
         &:nth-child(1){
-            .parallax-rockfest__chunk-img {
+            .parallax-rockmus__chunk-img {
                 top: 0;
+                min-width: 100%;
+                min-height: 100%;
             }
         }
         &:nth-child(2){
-            .parallax-rockfest__chunk-img {
-                top: 490px;
+            .parallax-rockmus__chunk-img {
+                bottom: -50px;
+                left: 50%;
+                margin-left: 5%;
             }
         }
         &:nth-child(3){
-            .parallax-rockfest__chunk-img {
-                top: 550px;
+            .parallax-rockmus__chunk-img {
+                bottom: -485px;
+                left: 50%;
             }
         }
         &:nth-child(4){
-            .parallax-rockfest__chunk-img {
-                top: 574px;
+            .parallax-rockmus__chunk-img {
+                bottom: -100px;
+                left: 50%;
+                margin-left: 50%;
             }
         }
         &:nth-child(5){
-            .parallax-rockfest__chunk-img {
-                top: 360px;
-            }
-        }
-        &:nth-child(6){
-            .parallax-rockfest__chunk-img {
-                top: 630px;
-            }
-        }
-        &:nth-child(7){
-            .parallax-rockfest__chunk-img {
-                top: 1070px;
-            }
-        }
-        &:nth-child(8){
-            .parallax-rockfest__chunk-img {
-                top: 600px;
-            }
-        }
-        &:nth-child(9){
-            .parallax-rockfest__chunk-img {
-                top: 680px;
+            .parallax-rockmus__chunk-img {
+                top: 0;
+                min-width: 100%;
+                min-height: 100%;
             }
         }
 }
 
-.parallax-rockfest__chunk-img {
+.parallax-rockmus__chunk-img {
     position: absolute;
     left: 50%; //центрирует на 50 относительно основного контейнера (?)
     transform:translate(-50%); // центрирует относительно ширины самого элемента (?)

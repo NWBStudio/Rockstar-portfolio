@@ -5,4 +5,5 @@ if (process.env.NODE_ENV === "development") {
 
 import "./scripts/skills";
 import "./scripts/reviews";
-import "./scripts/pallax-rockfest";
+import "./scripts/parallax-rockfest";
+import "./scripts/parallax-rockmus";

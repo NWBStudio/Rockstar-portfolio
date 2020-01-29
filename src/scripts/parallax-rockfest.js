@@ -1,4 +1,4 @@
-const parallaxRock = document.querySelector('.parallax-rock');
+const parallaxRock = document.querySelector('.parallax-rockfest');
 const parallaxRockLayers = parallaxRock.children;
 
 function moveLayersOnScroll(scroll, layers, speed) {
@@ -14,5 +14,5 @@ function moveLayersOnScroll(scroll, layers, speed) {
 
 window.addEventListener('scroll', e => {
     const wScroll = window.pageYOffset;
-    moveLayersOnScroll(wScroll, parallaxRockLayers, 14);
+    moveLayersOnScroll(wScroll, parallaxRockLayers, 20);
 })
