@@ -1,0 +1,74 @@
+.rockfest-bg {
+    background: $bg-purple;
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax-rock{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.parallax-rock__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform; //перекидывает обработку с проца на GPU, добавляет оптимизации
+        &:nth-child(1){
+            .parallax-rock__chunk-img {
+                top: 0;
+            }
+        }
+        &:nth-child(2){
+            .parallax-rock__chunk-img {
+                top: 490px;
+            }
+        }
+        &:nth-child(3){
+            .parallax-rock__chunk-img {
+                top: 550px;
+            }
+        }
+        &:nth-child(4){
+            .parallax-rock__chunk-img {
+                top: 574px;
+            }
+        }
+        &:nth-child(5){
+            .parallax-rock__chunk-img {
+                top: 360px;
+            }
+        }
+        &:nth-child(6){
+            .parallax-rock__chunk-img {
+                top: 630px;
+            }
+        }
+        &:nth-child(7){
+            .parallax-rock__chunk-img {
+                top: 1070px;
+            }
+        }
+        &:nth-child(8){
+            .parallax-rock__chunk-img {
+                top: 600px;
+            }
+        }
+        &:nth-child(9){
+            .parallax-rock__chunk-img {
+                top: 680px;
+            }
+        }
+}
+
+.parallax-rock__chunk-img {
+    position: absolute;
+    left: 50%; //центрирует на 50 относительно основного контейнера (?)
+    transform:translate(-50%); // центрирует относительно ширины самого элемента (?)
+}
