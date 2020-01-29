@@ -13,6 +13,10 @@
 
 .hero__main {
     display: flex;
+    @include phones {
+        flex-direction: column;
+        margin-bottom: auto; 
+    }
 }
 
 .hero__text {
@@ -24,6 +28,9 @@
     text-align: right;
     margin-right: 7%;
     width: 250px;
+    @include phones {
+        text-align: center;
+    }
 }
 
 .hero__title {
@@ -32,6 +39,9 @@
     color: $white;
     font-weight: $extrabold;
     width: 450px;
+    @include phones {
+        text-align: center;
+    }
 }
 
 .hero__scroll {
@@ -46,6 +56,9 @@
         .hero__scroll-icon {
             fill: $amber;
         }
+    }
+    @include phones {
+        display: none;
     }
 }
 

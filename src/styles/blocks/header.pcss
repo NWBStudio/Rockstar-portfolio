@@ -3,6 +3,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    @include phones {
+        margin-bottom: auto; 
+    }
 }
 
 
@@ -12,4 +15,34 @@
     text-transform: uppercase;
     color: $white;
     font-weight: $extrabold;
+    @include tablets {
+        margin-right: auto;
+    }
+}
+
+.header__nav {
+    width: 55%;
+    max-width: 850px;
+    @include desktop {
+        width: 65%;
+    }
+    @include tablets {
+        display: none;
+    }
+}
+
+.header__burger-menu-btn {
+    margin-left: 8%;
+    display: none;
+    @include tablets {
+        display: block;
+    }
+    @include phones {
+        margin-left: auto;
+    }
+}
+
+.header__burger-menu-icon {
+    fill: $white;
+    width: 26px;
 }

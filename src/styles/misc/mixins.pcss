@@ -22,6 +22,12 @@
   }
 }
 
+@mixin phones-small() {
+  @media screen and (max-width: $bp-phones-small) {
+    @content;
+  }
+}
+
 @mixin bg-slice ($width, $height, $url) {
   content: "";
   background: url($url) no-repeat;
