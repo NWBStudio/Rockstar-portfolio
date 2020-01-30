@@ -1,10 +1,14 @@
 $icon-width: 74px;
 $icon-margin: 20px;
+$icon-width-tabs: 40px;
 
 .review{
     width: 350px;
     position: relative;
     margin-left: calc($icon-width + $icon-margin);
+    @include tablets {
+        margin-left: calc($icon-width-tabs + $icon-margin);
+    }
 }
 
 .review__icon {
@@ -13,6 +17,10 @@ $icon-margin: 20px;
     position: absolute;
     top: 0;
     left: calc(($icon-width + $icon-margin) * -1);
+    @include tablets {
+        width: $icon-width-tabs;
+        left: calc(($icon-width-tabs + $icon-margin) * -1);
+    }
 }
 
 .review__text {
@@ -25,6 +33,9 @@ $icon-margin: 20px;
 .review__role {
     font-weight: $semibold;
     opacity: 0.5;
+    @include phones-small {
+        font-size: 12px;
+    }
 }
 
 .review__avatar {
@@ -39,4 +50,8 @@ $icon-margin: 20px;
     font-size: 18px;
     line-height: 48px;
     font-weight: $bold;
+    @include phones-small {
+        font-size: 15px;
+        line-height: 20px;
+    }
 }

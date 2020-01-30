@@ -1,3 +1,14 @@
+.switcher {
+    @include phones {
+        display: flex;
+        width: 30%;
+        justify-content: space-between;
+    }
+    @include phones-small {
+        width: 40%;
+    }
+}
+
 .switcher__item {
     display: inline-flex;
     width: 50px;
@@ -7,6 +18,9 @@
     justify-content: center;
     align-items: center;
     margin-right: 30px;
+    @include phones {
+        margin-right: 0;
+    }
 }
 
 .switcher__item:hover {

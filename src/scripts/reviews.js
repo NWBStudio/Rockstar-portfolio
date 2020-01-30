@@ -15,7 +15,8 @@ new Vue ({
                 wrapAround: false,
                 groupCells: true,
                 freeScroll: false,
-                contain: true
+                contain: true,
+                draggable: false //если потребуется включение, то нужно сделать проверку состояния стрелок
             },
             reviews: []
         }

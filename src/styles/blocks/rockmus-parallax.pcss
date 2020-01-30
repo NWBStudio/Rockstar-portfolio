@@ -2,7 +2,20 @@
     background: $bg-purple;
     position: relative;
     overflow: hidden;
+    @include tablets {
+        background:  $bg-purple url("../images/bg/Outro-bg.jpg") no-repeat;
+        background-size: cover;
+        background-position: top 0 right 20%;
+    }
+
 }
+
+.parallax-rockmus {
+    @include tablets {
+        display: none;
+    }
+}
+
 
 .parallax-rockmus__layer {
     position: absolute; //слои расположены друг над другом на одном и том же месте, а манипулируем местоположением картинок внутри них
@@ -27,8 +40,9 @@
         }
         &:nth-child(3){
             .parallax-rockmus__chunk-img {
-                bottom: -485px;
+                bottom: -420px;
                 left: 50%;
+                margin-left: 35%;
             }
         }
         &:nth-child(4){
@@ -36,6 +50,9 @@
                 bottom: -100px;
                 left: 50%;
                 margin-left: 50%;
+                @include desktop {
+                    margin-left: 70%;
+                }
             }
         }
         &:nth-child(5){
