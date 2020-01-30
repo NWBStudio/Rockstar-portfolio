@@ -87,6 +87,9 @@ $icon-width: 30px;
         width: calc(($form-width - $icon-width) * 0.9);
     }
     @include tablets {
+        width: calc($form-width - $icon-width);
+    }
+    @include phones {
         width: calc(100% - $icon-width);
         padding-right: 0;
     }
