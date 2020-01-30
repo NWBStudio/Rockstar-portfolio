@@ -1,26 +1,38 @@
 $form-width: 850px;
-$input-width: 375px;
+$input-width: calc($form-width * 0.44);
 $icon-height: 30px;
+$icon-width: 30px;
 
 .form {
     width: $form-width;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @include desktop {
+        width: calc($form-width * 0.9); // на пограничных с 768 разрешениях чуть не влезает без этого
+    }
+    @include tablets {
+        width: $form-width;
+    }
+    @include phones {
+        flex-direction: column;
+        width: 100%;
+        flex-wrap: nowrap;
+    }
 }
 
 .form__label {
     border-bottom: 2px solid $white;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
     &:last-child {
         margin-bottom: 55px;
     }
 }
 
 .form__label-icon {
-    width: 30px;
+    width: $icon-width;
     height: $icon-height;
-    fill: $light-purple;
+    fill: $white;
     &--textarea {
         align-self: flex-start;
     }
@@ -28,8 +40,11 @@ $icon-height: 30px;
 
 .form__label-title {
     font-weight: $semibold;
-    opacity: 0.3;
-    margin-bottom: 25px;
+    opacity: 0.7;
+    margin-bottom: 15px;
+    @include tablets {
+        text-align: center;
+    }
 }
 
 .form__input-line {
@@ -49,14 +64,37 @@ $icon-height: 30px;
     @include placeholder {
         color: $white;
     }
+    @include desktop {
+        width: calc($input-width * 0.9);
+    }
+    @include tablets {
+        width: $input-width;
+    }
+    @include phones {
+        width: 100%;
+    }
 }
 
 
 .form__textarea {
     line-height: 36px;
-    width: $form-width;
+    width: calc($form-width - $icon-width);
     margin-right: 0;
     resize: none;
     padding-right: $input-width;
     padding-bottom: 10px;
+    @include desktop {
+        width: calc(($form-width - $icon-width) * 0.9);
+    }
+    @include tablets {
+        width: calc(100% - $icon-width);
+        padding-right: 0;
+    }
+}
+
+.form__submit-btn {
+    @include tablets {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

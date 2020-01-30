@@ -1,4 +1,15 @@
 .contacts {
     padding: 160px 0 140px 0;
     position: relative;
+    @include phones-small {
+        padding: 40px 0 100px 0;
+    }
+}
+
+
+.contacts__title {
+    margin-bottom: 60px;
+    @include tablets {
+        text-align: center;
+    }
 }
