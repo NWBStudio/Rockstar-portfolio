@@ -1,5 +1,6 @@
 .rockfest-bg {
-    background: $bg-purple;
+    background: $bg-purple url("../images/bg/Welcome-bg.jpg") no-repeat;
+    background-size: cover;
     position: relative;
     overflow: hidden;
 }
@@ -10,6 +11,9 @@
     left: 0;
     width: 100%;
     height: 100%;
+    @include tablets {
+        display: none;
+    }
 }
 
 
@@ -22,22 +26,23 @@
     will-change: transform; //перекидывает обработку с проца на GPU, добавляет оптимизации
         &:nth-child(1){
             .parallax-rockfest__chunk-img {
-                top: 0;
+                top: -210px;
             }
         }
         &:nth-child(2){
             .parallax-rockfest__chunk-img {
-                top: 490px;
+                top: 442px;
             }
         }
         &:nth-child(3){
             .parallax-rockfest__chunk-img {
-                top: 550px;
+                top: 364px;
             }
         }
         &:nth-child(4){
             .parallax-rockfest__chunk-img {
-                top: 574px;
+                top: 620px;
+
             }
         }
         &:nth-child(5){
@@ -71,4 +76,5 @@
     position: absolute;
     left: 50%; //центрирует на 50 относительно основного контейнера (?)
     transform:translate(-50%); // центрирует относительно ширины самого элемента (?)
+    max-width: none;
 }
