@@ -1,8 +1,11 @@
 .rockfest-bg {
-    background: $bg-purple url("../images/bg/Welcome-bg.jpg") no-repeat;
-    background-size: cover;
+    background: $bg-purple;    
     position: relative;
     overflow: hidden;
+    @include tablets {
+        background: $bg-purple url("../images/bg/Welcome-bg.jpg") no-repeat;
+        background-size: cover;
+    }
 }
 
 .parallax-rockfest{
@@ -62,7 +65,7 @@
         }
         &:nth-child(8){
             .parallax-rockfest__chunk-img {
-                top: 600px;
+                top: 620px;
             }
         }
         &:nth-child(9){
