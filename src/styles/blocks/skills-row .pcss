@@ -1,5 +1,8 @@
 .skills-row {
     margin-bottom: 45px;
+    @include tablets {
+        margin-bottom: 32px;
+    }
     &::last-child {
         margin-bottom: 0px;
     }
@@ -11,8 +14,21 @@
     font-weight: $bold;
     color: $font-dark-purple;
     margin-bottom: 25px;
+    @include desktop {
+        font-size: 20px;
+    }
+    @include tablets {
+        text-align: center;
+        margin-bottom: 16px;
+    }
 }
 
 .skills-row__list {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    @include phones {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

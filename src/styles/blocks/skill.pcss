@@ -2,7 +2,6 @@
     position: relative;
     width: 150px;
     height: 150px;
-    margin-right: 40px;
     &::last-child {
         margin-right: 0;
     }
@@ -18,12 +17,24 @@
 .skill__circle--position--under {
     stroke: $light-grey;
     stroke-width: 10px;
+    @include tablets {
+        stroke-width: 15px;
+    }
+    @include tablets {
+        stroke-width: 18px;
+    }
 }
 
 .skill__circle--position--above {
     stroke-width: 20px;
     stroke-dasharray: 502; // Приблизительный расчёт по формуле 2 * π * R  = C <-- Это оно
     stroke-dashoffset: 251;
+    @include tablets {
+        stroke-width: 25px;
+    }
+    @include phones {
+        stroke-width: 32px;
+    }
 }
 
 .skill__title {
