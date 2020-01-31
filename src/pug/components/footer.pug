@@ -1,13 +1,14 @@
 footer.footer
     .container.footer__inner
-        div.copyright.footer__copyright 
-            +icon("copyright", "copyright__icon")
-            span.copyright__text 2020
-        .footer__user
-            h3.footer__user-name Владимир Куприенков
-            span.footer__user-text Личный сайт#[br] веб-разработчика
+        .footer__personal
+            div.copyright.footer__copyright 
+                +icon("copyright", "copyright__icon")
+                span.copyright__text 2020
+            .footer__user
+                h3.footer__user-name Владимир Куприенков
+                span.footer__user-text Личный сайт веб-разработчика
         .footer__content
-            +nav("footer__nav")
+            +nav("nav--footer footer__nav")
             .footer__info
                 p.footer__info-text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
                 +social("social--rounded footer__social social--color--dark-magenta")

@@ -1,21 +1,49 @@
 .footer {
     background: $bg-purple;
     padding: 90px 0;
+    @include phones {
+        padding: 35% 0; // чтобы на 18:9 секция занимала хотя бы весь экран
+    }
+    @include phones-small {
+        padding: 20% 0;
+    }
 }
 
 .footer__inner {
     display: flex;
     align-items: flex-start;
+    @include phones {
+        flex-wrap: wrap;
+    }
 }
 
+.footer__personal {
+    display: flex;
+    align-items: flex-start;
+    margin-right: 7%;
+    width: 33%;
+    max-width: 400px;
+    flex-wrap: wrap;
+    @include desktop {
+        width: 20%;
+    }
+    @include phones {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+}
+
+
 .footer__copyright {
-    margin-right: 4%;
+    margin-right: 12%;
+    margin-bottom: 20px;
 }
 
 .footer__user {
-    width: 11%;
-    max-width: 160px;
-    margin-right: 8%;
+    width: 160px;
+    @include phones {
+        width: 100%;
+    }
 }
 
 .footer__user-name {
@@ -24,7 +52,10 @@
     font-weight: $bold;
     text-transform: uppercase;
     color: $white;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
+    @include phones {
+        margin-bottom: 8px;
+    }
 }
 
 .footer__user-text {
@@ -34,20 +65,22 @@
 .footer__content {
     display: flex;
     flex-wrap: wrap;
-}
-
-.footer__nav {
-    margin-bottom: 15px;
-    width: 100%;
-    .nav__item {
-        padding-top: 0;
+    @include phones {
+        width: 100%;
     }
 }
 
+.footer__nav {
+    margin-bottom: 20px;
+}
+
 .footer__info {
-    width: 35%;
+    width: 355px;
     margin-right: 5%;
-    max-width: 356px;
+    margin-bottom: 50px;
+    @include phones {
+        width: 100%;
+    }
 }
 
 .footer__info-text {
@@ -56,6 +89,8 @@
 }
 
 .footer__quote {
-    width: 45%;
-    max-width: 440px;
+    width: 440px;
+    @include phones {
+        width: 100%;
+    }
 }
