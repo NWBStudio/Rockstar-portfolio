@@ -40,6 +40,6 @@ new Vue({
     },
     created() {
         const data = require("../data/skills.json");
-        this.skills = data; //наполнение массива данными из json файла
+        this.skills = data; //наполнение массива данными из json файла с готовыми путями для картинок
     }
 });

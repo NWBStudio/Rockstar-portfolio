@@ -3,9 +3,21 @@ $controls-height: 100px;
 
 .slider {
     position: relative;
+    &::after{
+        content: attr(data-slide);
+        position: absolute;
+        color: $light-grey;
+        font-size: 400px;
+        line-height: 1em;
+        font-weight: $extrabold;
+        left: 96%;
+        width: 235px;
+        bottom: calc($controls-above + $controls-height);
+        margin-bottom: -46px;
+    }
 }
 
-.slider__preview {
+.slider__previews {
     position: absolute;
     bottom: $controls-above;
     right: 0;
@@ -54,16 +66,5 @@ $controls-height: 100px;
         }
     }
 
-}
-.slider__counter {
-    position: absolute;
-    color: $light-grey;
-    font-size: 400px;
-    line-height: 1em;
-    font-weight: $extrabold;
-    left: 95%;
-    width: 235px;
-    bottom: calc($controls-above + $controls-height);
-    margin-bottom: -46px;
 }
 

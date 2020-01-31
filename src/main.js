@@ -7,3 +7,4 @@ import "./scripts/skills";
 import "./scripts/reviews";
 import "./scripts/parallax-rockfest";
 import "./scripts/parallax-rockmus";
+import "./scripts/works-widget.js";

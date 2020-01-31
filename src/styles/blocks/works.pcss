@@ -7,11 +7,11 @@
     margin-bottom: 80px;
 }
 
-.works__content {
+.works-widget {
     display: flex;
 }
 
-.works__left {
+.works-widget__slider {
     margin-right: 14%;
     width: 65%;
     @include desktop {
@@ -19,17 +19,17 @@
     }
 }
 
-.works__right {
+.works-widget__info {
     width: 25%;
     max-width: 350px;
     z-index: 20; //чтобы перекрывать счётчик в случае чего
 }
 
-.works__tags {
+.works-widget__tags {
     margin-bottom: 45px;
 }
 
-.works__info-title {
+.works-widget__title {
     font-size: 30px;
     line-height: 48px;
     font-weight: $bold;
@@ -37,7 +37,7 @@
     margin-bottom: 40px;
 }
 
-.works__info-text {
+.works-widget__desc {
     color: $font-dark-blue;
     font-weight: $semibold;
     opacity: 0.7;

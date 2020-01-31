@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "title": "Сайт школы образования",
+        "skills": "Html, Css, JavaScript",
+        "img": "preview1.jpg",
+        "link": "//google.com",
+        "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+    },
+    {
+        "id": 2,
+        "title": "Сайт школы образования 2",
+        "skills": "Git, Vue, Webpack",
+        "img": "preview2.jpg",
+        "link": "//mail.ru",
+        "desc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis odio repudiandae voluptate rem autem assumenda quia? Reprehenderit vel impedit natus."
+    },
+    {
+        "id": 3,
+        "title": "Сайт школы образования 3",
+        "skills": "Gulp, Terminal, JQuery",
+        "img": "preview3.jpg",
+        "link": "//yandex.ru",
+        "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet voluptatum harum, obcaecati deserunt cum unde adipisci nemo vitae neque consequuntur."
+    },
+    {
+        "id": 4,
+        "title": "Сайт школы образования 4",
+        "skills": "React, Docker, Kubernets",
+        "img": "preview4.jpg",
+        "link": "//duckduckgo.com/",
+        "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur atque repellendus distinctio soluta eos alias perspiciatis repellat consequuntur nobis harum."
+    }
+]
