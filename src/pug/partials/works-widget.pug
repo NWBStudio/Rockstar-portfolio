@@ -3,40 +3,47 @@ script(type="text/x-template")#widget-container
         //- передаём данные из data внутрь компонентов через свойства
         slider(
             :works= "works",
-            :currentWork= "currentWork" 
+            :currentWork= "currentWork",
+            @slide="handleSlide"
+            :currentIndex = "currentIndex"  
         )
         info(
             :currentWork= "currentWork" 
         )
 
 script(type="text/x-template")#widget-slider    
-    .works-widget__slider.slider(data-slide="1")
+    .works-widget__slider.slider(:data-slide="currentIndex + 1")
         img.slider__fullpic(:src="currentWork.img", alt="Полноразмерное превью работы")
-        //- +image("content/preview1.jpg", "slider__fullpic")
         previews(
-            :works="works"
+            :works="works",
+            :currentWork= "currentWork" 
         )
-        
-        //- назначаем событию slide обработчик handleSlide 
+
+        //- пробрасываем(эмитим) событие slide дальше и передаём с ним данные (направление)
         buttons(
-            @slide="handleSlide" 
+            @slide="$emit('slide', $event)"
         ) 
 
 script(type="text/x-template")#slider-previews
     ul.previews.slider__previews
         //- Не забыть про previews__item--active
-        li.previews__item(v-for="work in works") 
+        li.previews__item(
+            v-for="work in works"
+            :class="{'previews__item--active': currentWork.id === work.id}"
+        ) 
             img.previews__pic(:src="work.img", alt="Уменьшенное превью работы")         
 
 script(type="text/x-template")#slider-buttons                                     
     .slider__buttons
-        //- По событию click создаётся пользовательское событие с именем slide и вместе с ним вторым аргументом передаются данные 
+        //- По событию click создаётся пользовательское событие с именем slide, которое пробрасывается(эмитится) выше и вместе с ним вторым аргументом передаются данные 
         +arrow-btn('right', 'slider__buttons-item slider__buttons-item--active', 'greyish', {"@click": "$emit('slide', 'next')"}) 
         +arrow-btn('left', 'slider__buttons-item', 'greyish', {"@click": "$emit('slide', 'prev')"})
 
 script(type="text/x-template")#widget-info      
     .works-widget__info
-        tags
+        tags(
+            :tagsArray= "currentWork.skills"
+        )
         h3.works-widget__title {{currentWork.title}}
         .works-widget__desc
             p {{currentWork.desc}}
@@ -46,8 +53,6 @@ script(type="text/x-template")#widget-info
 
 script(type="text/x-template")#slider-tags   
     .works-widget__tags
-        - var tags = ['HTML', 'CSS', 'Javascript']
         ul.tags
-            each tag in tags
-                li.tags__item #{tag}
+            li.tags__item(v-for="tag in tagsArray") {{tag}}
 
