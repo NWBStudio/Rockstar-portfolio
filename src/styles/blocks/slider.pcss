@@ -15,6 +15,9 @@ $controls-height: 100px;
         width: 235px;
         bottom: calc($controls-above + $controls-height);
         margin-bottom: -46px;
+        @include phones {
+            display: none;     
+        }
     }
 }
 
@@ -24,6 +27,9 @@ $controls-height: 100px;
     right: 0;
     height: $controls-height;
     z-index: 30;
+    @include phones {
+        display: none;
+    }
 }
 
 
@@ -45,6 +51,10 @@ $controls-height: 100px;
     justify-content: space-between;
     align-items: center;
     z-index: 20;
+    @include phones {
+        bottom: 0;
+        right: 0%;
+    }
 }
 
 

@@ -1,14 +1,21 @@
 .works {
     padding: 145px 0 150px 0;
     background: $bg-light-grey;
-}
-
-.works__inner {
-    min-height: 650px;
+    @include tablets {
+        padding-bottom: 100px;
+    }
+    @include phones {
+        padding-top: 130px;
+        padding-bottom: 70px;
+    }
 }
 
 .works__title {
     margin-bottom: 80px;
+    @include phones {
+        text-align: center;
+        margin-bottom: 40px;
+    }
 }
 
 .works-widget {
@@ -28,6 +35,11 @@
     @include tablets {
         width: 80%;
         margin-right: 0;
+        margin-bottom: 55px;
+    }
+    @include phones {
+        width: 118%;
+        margin-left: -9%;
     }
 }
 
@@ -35,12 +47,28 @@
     width: 25%;
     max-width: 350px;
     z-index: 20; //чтобы перекрывать счётчик в случае чего
+    display: flex;
+    flex-direction: column;
+    min-height: 670px;
+    @include tablets {
+        width: 100%;
+        align-items: center;
+        max-width: none;
+        min-height: 400px;
+    }
+    @include phones {
+        align-items: flex-start;
+        min-height: 450px;
+    }
 }
 
 .works-widget__tags {
     margin-bottom: 45px;
     @include desktop {
         margin-bottom: 30px;
+    }
+    @include tablets {
+        margin-bottom: 15px;
     }
 }
 
@@ -53,6 +81,9 @@
     @include desktop {
         margin-bottom: 30px;
     }
+    @include phones {
+        text-align: left;    
+    }
 }
 
 .works-widget__desc {
@@ -60,4 +91,12 @@
     font-weight: $semibold;
     opacity: 0.7;
     margin-bottom: 30px;
+    @include tablets {
+        text-align: center;
+        width: 60%;
+    }
+    @include phones {
+        width: 100%;
+        text-align: left;
+    }
 }

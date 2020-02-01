@@ -6,7 +6,10 @@ const previews = {
     methods:{
         foo(ndx){ //костыль для адаптива - уменьшает количество отображаемых превьюх с 4 до 3
             let pass = false;
-            if (this.hdScreen) pass = true
+            if (this.hdScreen) {
+                pass = true;
+                return pass;
+            }
             else if((ndx == this.currentIndex) || (ndx - this.currentIndex == 1) || (this.currentIndex - ndx == 1) ){
                 pass = true;
             } else if(ndx - 2 == 0) {
@@ -99,9 +102,10 @@ new Vue({
             this.currentIndex = id - 1;
         },
         onResize() {
-            if (window.innerWidth <= 1200) {
+            if (window.innerWidth <= 1200) { //как минимум поменять на взятие значений из variables.json
                 this.hdScreen = false;
-            } else {
+            }
+            else {
                 this.hdScreen = true;
             }
         }
@@ -110,8 +114,8 @@ new Vue({
     created() {
         const data = require("../data/works-widget.json");
         this.works = this.makeArrWithRequiredImages(data); //наполнение массива данными из json файла с готовыми путями для картинок
-        this.onResize();
-        window.addEventListener('resize', this.onResize)
+        this.onResize(); //определение ширины экрана при загрузке страницы
+        window.addEventListener('resize', this.onResize) //дальнейшее слежение за изменением ширины экрана
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.onResize)
