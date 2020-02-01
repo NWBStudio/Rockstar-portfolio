@@ -3,19 +3,31 @@
     background: $bg-light-grey;
 }
 
+.works__inner {
+    min-height: 650px;
+}
+
 .works__title {
     margin-bottom: 80px;
 }
 
 .works-widget {
     display: flex;
+    @include tablets {
+        flex-direction: column;
+    }
 }
 
 .works-widget__slider {
     margin-right: 14%;
     width: 65%;
+    max-width: 980px;
     @include desktop {
-        max-width: 980px;
+        margin-right: 11%;
+    }
+    @include tablets {
+        width: 80%;
+        margin-right: 0;
     }
 }
 
@@ -27,6 +39,9 @@
 
 .works-widget__tags {
     margin-bottom: 45px;
+    @include desktop {
+        margin-bottom: 30px;
+    }
 }
 
 .works-widget__title {
@@ -35,6 +50,9 @@
     font-weight: $bold;
     color: $font-dark-blue;
     margin-bottom: 40px;
+    @include desktop {
+        margin-bottom: 30px;
+    }
 }
 
 .works-widget__desc {

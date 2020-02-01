@@ -2,7 +2,22 @@ import Vue from "vue";
 
 const previews = {
     template: "#slider-previews",
-    props: ["works", "currentWork"]
+    props: ["works", "currentWork", "currentIndex", "hdScreen"],
+    methods:{
+        foo(ndx){ //костыль для адаптива - уменьшает количество отображаемых превьюх с 4 до 3
+            let pass = false;
+            if (this.hdScreen) pass = true
+            else if((ndx == this.currentIndex) || (ndx - this.currentIndex == 1) || (this.currentIndex - ndx == 1) ){
+                pass = true;
+            } else if(ndx - 2 == 0) {
+                pass = true;
+            } else if(ndx + 2 == this.works.length - 1){
+                pass = true;
+            }
+            return pass;
+        }
+    }
+    
 };
 
 const buttons = {
@@ -20,7 +35,7 @@ const slider = {
         previews,
         buttons
     },
-    props: ["works", "currentWork", "currentIndex"]
+    props: ["works", "currentWork", "currentIndex", "hdScreen"]
 };
 
 const info = {
@@ -41,7 +56,8 @@ new Vue({
     data() {
         return {
             works: [],
-            currentIndex: 0
+            currentIndex: 0,
+            hdScreen: true
         };
     },
     computed: {
@@ -81,11 +97,23 @@ new Vue({
         },
         switchPreview(id){
             this.currentIndex = id - 1;
+        },
+        onResize() {
+            if (window.innerWidth <= 1200) {
+                this.hdScreen = false;
+            } else {
+                this.hdScreen = true;
+            }
         }
         
     },
     created() {
         const data = require("../data/works-widget.json");
         this.works = this.makeArrWithRequiredImages(data); //наполнение массива данными из json файла с готовыми путями для картинок
+        this.onResize();
+        window.addEventListener('resize', this.onResize)
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.onResize)
     }
 });

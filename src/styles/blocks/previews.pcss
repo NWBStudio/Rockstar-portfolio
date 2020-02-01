@@ -4,9 +4,11 @@
 
 .previews__item {
     width: 180px;
-    height: 100px;
     outline: 3px solid transparent;
     position: relative;
+    @include desktop {
+        width: 170px;
+    }
     &--active {
         outline-color: $amber;
         z-index: 10;
