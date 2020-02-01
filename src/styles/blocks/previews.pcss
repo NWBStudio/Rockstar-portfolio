@@ -6,14 +6,25 @@
     width: 180px;
     height: 100px;
     outline: 3px solid transparent;
-    cursor: pointer;
     position: relative;
     &--active {
         outline-color: $amber;
         z-index: 10;
     }
-    &::before {
-        content:" ";
+    
+}
+
+.previews__pic {
+    width: 100%;
+    height: 100%;  
+}
+
+.previews__button {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    &::after {
+        content:"";
         position: absolute;
         top: 0;
         bottom: 0;
@@ -26,14 +37,8 @@
         background-color: $amber;
     }
     &:hover {
-        &::before {
+        &::after{
             opacity: 0.3;
         }
     }
-}
-
-.previews__pic {
-    width: 100%;
-    height: 100%;
-    
 }

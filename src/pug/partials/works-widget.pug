@@ -4,8 +4,10 @@ script(type="text/x-template")#widget-container
         slider(
             :works= "works",
             :currentWork= "currentWork",
-            @slide="handleSlide"
-            :currentIndex = "currentIndex"  
+            :currentIndex = "currentIndex",
+            @slide="handleSlide",
+            @previewClick = "switchPreview"
+            
         )
         info(
             :currentWork= "currentWork" 
@@ -16,7 +18,8 @@ script(type="text/x-template")#widget-slider
         img.slider__fullpic(:src="currentWork.img", alt="Полноразмерное превью работы")
         previews(
             :works="works",
-            :currentWork= "currentWork" 
+            :currentWork= "currentWork",
+            @previewClick = "$emit('previewClick', $event)"
         )
 
         //- пробрасываем(эмитим) событие slide дальше и передаём с ним данные (направление)
@@ -27,11 +30,13 @@ script(type="text/x-template")#widget-slider
 script(type="text/x-template")#slider-previews
     ul.previews.slider__previews
         //- Не забыть про previews__item--active
+        
         li.previews__item(
             v-for="work in works"
             :class="{'previews__item--active': currentWork.id === work.id}"
         ) 
-            img.previews__pic(:src="work.img", alt="Уменьшенное превью работы")         
+            a.previews__button(@click="$emit('previewClick', work.id)")
+                img.previews__pic(:src="work.img", alt="Уменьшенное превью работы")         
 
 script(type="text/x-template")#slider-buttons                                     
     .slider__buttons

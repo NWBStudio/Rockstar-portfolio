@@ -6,7 +6,7 @@ const previews = {
 };
 
 const buttons = {
-    template: "#slider-buttons"
+    template: "#slider-buttons",
 };
 
 const tags = {
@@ -78,7 +78,11 @@ new Vue({
                     this.currentIndex--;
                     break;
             }
+        },
+        switchPreview(id){
+            this.currentIndex = id - 1;
         }
+        
     },
     created() {
         const data = require("../data/works-widget.json");
