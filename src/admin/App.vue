@@ -81,8 +81,10 @@
                 input(type="text" required).admin-input.form-label__input
               .works-form__controls
                 button(type="reset").reset-btn Отмена
-                button(type="submit").submit-btn Загрузить                                                                          
-
+                button(type="submit").submit-btn Загрузить
+          ul.works__snippets.snippets                                                                                
+            li.snippets-item.add-snippet-btn
+            li.snippets-item.works__snippet
 </template>
 
 <style lang="pcss">
@@ -456,6 +458,58 @@ body {
   &:active {
     opacity: 0.4;
   }
+}
+
+.snippets {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.snippets-item {
+  width: 30%;
+  margin-right: 5%;
+  &:nth-child(3){
+    margin-right: 0;
+  }
+}
+
+.works__snippets{
+  margin-bottom: 40px;
+}
+
+.works__snippet {
+  min-height: 400px;
+  background: $white;
+}
+
+.add-snippet-btn{
+  background: $bright-purple;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &:before {
+    content: "+";
+    color: $white;
+    font-size: 72px;
+    line-height: 30px;
+    border: 2px solid $white;
+    width: 155px;
+    height: 155px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 30px;
+  }
+  &:after {
+    content:"Добавить работу";
+    color: $white;
+    font-size: 18px;
+    font-weight: $bold;
+    line-height: 30px;
+  } 
 }
 
 </style>
