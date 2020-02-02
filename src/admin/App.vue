@@ -24,8 +24,8 @@
         .container.about__inner
           h2.section-title.section-title--admin.about__title Блок "Обо мне"
           ul.about__forms
-            li.about-form.about-form--new
-              .about-form__top-row
+            li.about-form.about-form--new.edit-form
+              .about-form__top-row.form-header
                 input(type="text" placeholder="Название новой группы" required).about-form__title.admin-input
                 button(type="button").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
                 button(type="button").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
@@ -36,8 +36,8 @@
                   input(type="text" placeholder="Новый навык" required disabled).new-skill-form__skill-name.admin-input
                   input(type="text" placeholder="0" required disabled).new-skill-form__skill-percent.admin-input
                   button(type= "submit" disabled).new-skill-form__submit +
-            li.about-form.about-form
-              .about-form__top-row
+            li.about-form.edit-form
+              .about-form__top-row.form-header
                 h3.about-form__title Workflow
                 button(type="button").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
                 button(type="button").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
@@ -58,9 +58,30 @@
                   input(type="text" placeholder="Новый навык" required ).new-skill-form__skill-name.admin-input
                   input(type="text" placeholder="0" required).new-skill-form__skill-percent.admin-input
                   button(type= "submit").new-skill-form__submit +
-
-
-
+      section.works
+        .container.works__inner
+          form.works-form.edit-form
+            .works-form__header.form-header
+              h3.works-form__title Добавление работы
+            .works-form__img-container
+              .works-form__img-tutorial Перетащите либо загрузите изображения
+              button(type="file").works-form__img-btn.submit-btn Загрузить
+            .works-form__fields
+              label.form-label
+                .form-label__title Название 
+                input(type="text" required).admin-input.form-label__input
+              label.form-label 
+                .form-label__title Ссылка
+                input(type="text" required).admin-input.form-label__input
+              label.form-label 
+                .form-label__title Описание
+                textarea(type="text" required).admin-textarea.form-label__input
+              label.form-label 
+                .form-label__title Добавление тега
+                input(type="text" required).admin-input.form-label__input
+              .works-form__controls
+                button(type="reset").reset-btn Отмена
+                button(type="submit").submit-btn Загрузить                                                                          
 
 </template>
 
@@ -144,8 +165,6 @@ body {
 }
 
 .about-form {
-  background: $white;
-  padding: 30px 25px;
   width: 47%;
   margin-right: 6%;
   min-height: 400px;
@@ -167,11 +186,17 @@ body {
   }
 }
 
-.about-form__top-row {
+.edit-form {
+  background: $white;
+  padding: 30px 25px;
+}
+
+.form-header {
   padding-bottom: 15px;
   border-bottom: 1px solid $gray;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .about-form__middle-row {
@@ -193,7 +218,7 @@ body {
   border: none;
   padding: 2px 2px 6px 2px;
   border-bottom: 1px solid $black;
-  color: $font-dark-blue;
+  color: $dark-grayish-blue;
   font-weight: $semibold;
   @include placeholder {
     color: $black-opacity;
@@ -303,41 +328,134 @@ body {
   }
 }
 
-  .skills-table {
-    height: 100%;
-    width:  100%;
+.skills-table {
+  height: 100%;
+  width:  100%;
+  display: flex;
+  flex-direction: column;
+  color: $font-dark-blue;
+}
+.skills-table__row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.skills-table__skill-name {
+  margin-right: auto;
+}
+.skills-table__skill-percent {
+  margin-right: 10px;
+}
+.skills-table__skill-percent-sign {
+  margin-right: 15%;
+}
+.skills-table__skill-percent-controls{
+  display: flex;
+  align-items: center;
+  width: 55px;
+  justify-content: space-between;
+}
+
+.works-form{
+  width: 100%;
+  display:  flex;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.works-form__header{
+  margin-bottom: 50px;
+}
+
+.works-form__title {
+  font-size: 18px;
+  font-weight: $semibold;
+  line-height: 34px;
+}
+
+.works-form__img-container{
+    width: 495px;
+    height:  275px;
+    background: $blueish-gray;
     display: flex;
     flex-direction: column;
-    color: $font-dark-blue;
-  }
-
-  .skills-table__row {
-    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-  }
+    margin-right: 5%;
+}
 
-  .skills-table__skill-name {
-    margin-right: auto;
-  }
+.works-form__img-tutorial{
+  line-height: 34px;
+  color: $dark-grayish-blue;
+  font-weight: $semibold;
+  opacity: 0.5;
+  margin-bottom: 25px;
+  width: 40%;
+  text-align: center;
+}
 
-  .skills-table__skill-percent {
-    margin-right: 10px;
-  }
+.works-form__fields {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 
-  .skills-table__skill-percent-sign {
-    margin-right: 15%;
-  }
+.form-label {
+  margin-bottom: 30px;
+}
 
-  .skills-table__skill-percent-controls{
+.form-label__title {
+  margin-bottom: 10px;
+  color: $dark-grayish-blue;
+  font-weight: $semibold;
+  opacity: 0.5;
+}
+
+.form-label__input {
+  width: 100%;
+}
+
+
+.admin-textarea {
+    resize: none;
+    border: 1px solid $gray;
+    height: 155px;
+    padding: 20px 30px 20px 20px;
+}
+
+.works-form__controls {
+    align-self: flex-end;
     display: flex;
-    align-items: center;
-    width: 55px;
     justify-content: space-between;
+    width: 50%;
+    max-width: 315px;
+}
+
+.submit-btn {
+  line-height: 48px;
+  font-weight: $bold;
+  text-transform: uppercase;
+  color: $white;
+  background-color: $bright-purple;
+  padding: 6px 35px;
+  border-radius: 35px;
+  &:hover {
+    opacity: 0.8;
   }
+  &:active {
+    opacity: 0.4;
+  }
+}
 
-
-
-
+.reset-btn {
+  font-weight: $semibold;
+  color: $bright-purple;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.4;
+  }
+}
 
 </style>
