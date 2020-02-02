@@ -45,8 +45,8 @@ script(type="text/x-template")#slider-previews
 script(type="text/x-template")#slider-buttons                                     
     .slider__buttons
         //- По событию click создаётся пользовательское событие с именем slide, которое пробрасывается(эмитится) выше и вместе с ним вторым аргументом передаются данные 
-        +arrow-btn('right', 'slider__buttons-item slider__buttons-item--active', 'greyish', {"@click": "$emit('slide', 'next')"}) 
-        +arrow-btn('left', 'slider__buttons-item', 'greyish', {"@click": "$emit('slide', 'prev')"})
+        +arrow-btn('right', 'slider__buttons-item slider__buttons-item--active', 'grayish', {"@click": "$emit('slide', 'next')"}) 
+        +arrow-btn('left', 'slider__buttons-item', 'grayish', {"@click": "$emit('slide', 'prev')"})
 
 script(type="text/x-template")#widget-info      
     .works-widget__info
