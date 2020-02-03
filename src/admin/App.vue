@@ -25,7 +25,7 @@
           h2.section-title.section-title--admin.about__title Блок "Обо мне"
           ul.about__forms
             li.about-form.about-form--new.edit-form
-              .about-form__top-row.form-header
+              .about-form__top-row.edit-form-header
                 input(type="text" placeholder="Название новой группы" required).about-form__title.admin-input
                 button(type="button").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
                 button(type="button").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
@@ -37,7 +37,7 @@
                   input(type="text" placeholder="0" required disabled).new-skill-form__skill-percent.admin-input
                   button(type= "submit" disabled).new-skill-form__submit +
             li.about-form.edit-form
-              .about-form__top-row.form-header
+              .about-form__top-row.edit-form-header
                 h3.about-form__title Workflow
                 button(type="button").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
                 button(type="button").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
@@ -61,8 +61,8 @@
       section.works
         .container.works__inner
           form.works-form.edit-form
-            .works-form__header.form-header
-              h3.works-form__title Добавление работы
+            .works-form__header.edit-form-header
+              h3.edit-form-title Добавление работы
             .works-form__img-container
               .works-form__img-tutorial Перетащите либо загрузите изображения
               button(type="file").works-form__img-btn.filled-btn Загрузить
@@ -79,11 +79,14 @@
               label.form-label 
                 .form-label__title Добавление тега
                 input(type="text" required).admin-input.form-label__input
-              .works-form__controls
+              .works-form__controls.form-controls
                 button(type="reset").text-btn-or-link Отмена
                 button(type="submit").filled-btn Загрузить
           ul.works__snippets.snippets                                                                                
-            li.snippets-item.add-snippet-btn
+            li.snippets-item
+              button(type="button").add-snippet-btn
+                .add-snippet-btn__text Добавить работу
+
             li.snippets-item.works-snippet
               .works-snippet__img-container
                 img(src="../images/content/preview1.jpg", alt="Превью работы").works-snippet__img
@@ -101,7 +104,30 @@
                   button(type="button").snippet-button
                     span.snippet-button__text Удалить
                     .iconed-btn.iconed-btn--type--cross
-            
+      section.reviews
+        .container.reviews__inner
+          form.reviews-form.edit-form
+            .reviews-form__header.edit-form-header
+              h3.edit-form-title Добавить отзыв
+            .reviwes-form__add-img
+              .reviews-form__img-containter
+              button(type="file").text-btn-or-link Добавить фото
+            .reviews-form__fields
+              .reviews-form__row
+                label.form-label.reviews__form-label
+                    .form-label__title Имя автора
+                    input(type="text" required).admin-input.form-label__input
+                label.form-label.reviews__form-label 
+                  .form-label__title Титул автора
+                  input(type="text" required).admin-input.form-label__input
+              .reviews-form__row      
+                label.form-label 
+                  .form-label__title Отзыв
+                  textarea(type="text" required).admin-textarea.form-label__input
+              .reviews-form__controls.form-controls
+                button(type="reset").text-btn-or-link Отмена
+                button(type="submit").filled-btn Загрузить                    
+
 
 </template>
 
@@ -169,6 +195,7 @@ body {
 .header__nav {
   background: $white;
   width: 100%;
+  box-shadow: 2px 2px 8px $gray;
 }
 
 .about {
@@ -193,6 +220,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 7px 5px 10px $gray;
   &:nth-child(2) {
     margin-right: 0;
   }
@@ -201,7 +229,7 @@ body {
       display: none;
     }
     .about-form__submit-btn,
-    .about-form__cancel-btn{
+    .about-form__cancel-btn {
       display: block;
     }
   }
@@ -210,9 +238,10 @@ body {
 .edit-form {
   background: $white;
   padding: 30px 25px;
+  box-shadow: 7px 5px 10px $gray;
 }
 
-.form-header {
+.edit-form-header {
   padding-bottom: 15px;
   border-bottom: 1px solid $gray;
   display: flex;
@@ -297,7 +326,7 @@ body {
 }
 
 .about-form__submit-btn,
-.about-form__cancel-btn{
+.about-form__cancel-btn {
   display: none;
 }
 
@@ -351,7 +380,7 @@ body {
 
 .skills-table {
   height: 100%;
-  width:  100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   color: $font-dark-blue;
@@ -370,42 +399,42 @@ body {
 .skills-table__skill-percent-sign {
   margin-right: 15%;
 }
-.skills-table__skill-percent-controls{
+.skills-table__skill-percent-controls {
   display: flex;
   align-items: center;
   width: 55px;
   justify-content: space-between;
 }
 
-.works-form{
+.works-form {
   width: 100%;
-  display:  flex;
+  display: flex;
   flex-wrap: wrap;
   margin-bottom: 40px;
 }
 
-.works-form__header{
+.works-form__header {
   margin-bottom: 50px;
 }
 
-.works-form__title {
+.edit-form-title {
   font-size: 18px;
   font-weight: $semibold;
   line-height: 34px;
 }
 
-.works-form__img-container{
-    width: 495px;
-    height:  275px;
-    background: $blueish-gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5%;
+.works-form__img-container {
+  width: 495px;
+  height: 275px;
+  background: $blueish-gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
 }
 
-.works-form__img-tutorial{
+.works-form__img-tutorial {
   line-height: 34px;
   color: $dark-grayish-blue;
   font-weight: $semibold;
@@ -423,6 +452,7 @@ body {
 
 .form-label {
   margin-bottom: 30px;
+  flex: 1;
 }
 
 .form-label__title {
@@ -436,20 +466,19 @@ body {
   width: 100%;
 }
 
-
 .admin-textarea {
-    resize: none;
-    border: 1px solid $gray;
-    height: 155px;
-    padding: 20px 30px 20px 20px;
+  resize: none;
+  border: 1px solid $gray;
+  height: 155px;
+  padding: 20px 30px 20px 20px;
 }
 
-.works-form__controls {
-    align-self: flex-end;
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    max-width: 315px;
+.form-controls {
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  max-width: 315px;
 }
 
 .filled-btn {
@@ -490,12 +519,12 @@ body {
   margin-right: 5%;
   box-shadow: 7px 5px 10px $gray;
   margin-bottom: 30px;
-  &:nth-child(3){
+  &:nth-child(3) {
     margin-right: 0;
   }
 }
 
-.works__snippets{
+.works__snippets {
   margin-bottom: 40px;
 }
 
@@ -504,12 +533,14 @@ body {
   background: $white;
 }
 
-.add-snippet-btn{
+.add-snippet-btn {
   background: $bright-purple;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
   &:before {
     content: "+";
     color: $white;
@@ -524,14 +555,22 @@ body {
     border-radius: 50%;
     margin-bottom: 30px;
   }
-  &:after {
-    content:"Добавить работу";
+  &:hover {
+    &:before {
+      box-shadow: 1px 1px 25px $white;
+    }
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.add-snippet-btn__text {
     color: $white;
     font-size: 18px;
     font-weight: $bold;
     line-height: 30px;
-  } 
-}
+  }
 
 .works-snippet__info {
   padding: 35px 30px 40px 30px;
@@ -541,7 +580,7 @@ body {
   position: relative;
 }
 
-.works-snippet__tags{
+.works-snippet__tags {
   position: absolute;
   right: 0;
   bottom: 5px;
@@ -567,18 +606,23 @@ body {
   margin-bottom: 25px;
 }
 
-
 .snippet-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .snippet-button {
-    display: flex;
-    align-items: center;
-    padding: 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  &:hover {
+    opacity: 0.6;
+  }
+  &:active {
+    opacity: 0.3;
+  }
 }
 
 .snippet-button__text {
@@ -588,6 +632,58 @@ body {
   opacity: 0.5;
 }
 
+.reviews-form{
+  display: flex;
+  flex-wrap: wrap;
+  width:  100%;
+  margin-bottom: 30px;
+}
+
+.reviews-form__header{
+  margin-bottom: 50px;
+}
+
+.reviwes-form__add-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 35px;
+}
+
+.reviews-form__img-containter {
+  width: 200px;
+  height: 200px;
+  background: $gray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  &:before {
+    content: "";  
+    width: 115px;
+    height: 115px;
+    background: svg-load("user.svg", fill=$white, width=100%, height=100%); //разобраться с полной заливкой
+  }
+}
+
+.reviews-form__fields {
+  flex: 1;
+  margin-right: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews-form__row {
+  display: flex;
+}
+
+.reviews__form-label {
+  margin-left: 10%;
+  &:first-child{
+    margin-left: 0;
+  }
+}
 
 
 </style>
