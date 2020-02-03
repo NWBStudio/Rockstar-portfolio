@@ -33,8 +33,8 @@
               .about-form__middle-row
               .about-form__bottom-row
                 form.new-skill-form.about-form__new-skill
-                  input(type="text" placeholder="Новый навык" required disabled).new-skill-form__skill-name.admin-input
-                  input(type="text" placeholder="0" required disabled).new-skill-form__skill-percent.admin-input
+                  input(type="text" placeholder="Новый навык" required disabled ).new-skill-form__skill-name.admin-input
+                  input(type="text" placeholder="0" required disabled ).new-skill-form__skill-percent.admin-input
                   button(type= "submit" disabled).new-skill-form__submit +
             li.about-form.edit-form
               .about-form__top-row.edit-form-header
@@ -55,8 +55,8 @@
                             .iconed-btn.iconed-btn--type--trash
               .about-form__bottom-row
                 form.new-skill-form.about-form__new-skill
-                  input(type="text" placeholder="Новый навык" required ).new-skill-form__skill-name.admin-input
-                  input(type="text" placeholder="0" required).new-skill-form__skill-percent.admin-input
+                  input(type="text" placeholder="Новый навык" required name="title").new-skill-form__skill-name.admin-input
+                  input(type="text" placeholder="0" required name="percent").new-skill-form__skill-percent.admin-input
                   button(type= "submit").new-skill-form__submit +
       section.works
         .container.works__inner
@@ -69,7 +69,7 @@
             .works-form__fields
               label.form-label
                 .form-label__title Название 
-                input(type="text" required).admin-input.form-label__input
+                input(type="text" required name="name").admin-input.form-label__input
               label.form-label 
                 .form-label__title Ссылка
                 input(type="text" required).admin-input.form-label__input
@@ -116,10 +116,10 @@
               .reviews-form__row
                 label.form-label.reviews__form-label
                     .form-label__title Имя автора
-                    input(type="text" required).admin-input.form-label__input
+                    input(type="text" required name="name").admin-input.form-label__input
                 label.form-label.reviews__form-label 
                   .form-label__title Титул автора
-                  input(type="text" required).admin-input.form-label__input
+                  input(type="text" required name="role").admin-input.form-label__input
               .reviews-form__row      
                 label.form-label 
                   .form-label__title Отзыв
