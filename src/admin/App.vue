@@ -334,7 +334,7 @@ body {
   &--purple-pencil {
     background: svg-load(
       "pencil.svg",
-      fill=$bright-purple,
+      fill=$blueish-purple,
       width=100%,
       height=100%
     );
@@ -374,7 +374,7 @@ body {
 }
 
 .new-skill-form__submit {
-  background: $bright-purple;
+  background: $blueish-purple;
   font-size: 30px;
   font-weight: $semibold;
   line-height: 30px;
@@ -509,7 +509,7 @@ body {
   font-weight: $bold;
   text-transform: uppercase;
   color: $white;
-  background-color: $bright-purple;
+  background-color: $blueish-purple;
   padding: 6px 35px;
   border-radius: 35px;
   &:hover {
@@ -522,7 +522,7 @@ body {
 
 .text-btn-or-link {
   font-weight: $semibold;
-  color: $bright-purple;
+  color: $blueish-purple;
   &:hover {
     opacity: 0.8;
   }
@@ -554,7 +554,7 @@ body {
 }
 
 .add-snippet-btn {
-  background: $bright-purple;
+  background: $blueish-purple;
   display: flex;
   flex-direction: column;
   align-items: center;

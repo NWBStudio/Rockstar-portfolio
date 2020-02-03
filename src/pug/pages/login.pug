@@ -1,0 +1,28 @@
+include ../mixins/mixins
+
+<!DOCTYPE html>
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Страница авторизации
+    body
+        .login-wrapper
+            form.login-form
+                h2.login-form__title.section-title.section-title--dark Авторизация
+                label.form__label.form__label--admin
+                    .form__label-title Логин
+                    .form__input-line
+                        +icon("user", "form__label-icon")   
+                        input(type="text" placeholder="Введите логин" name="login" required).form__input 
+                label.form__label.form__label--admin
+                    .form__label-title Пароль
+                    .form__input-line
+                        +icon("key", "form__label-icon")     
+                        input(type="password" placeholder="Введите пароль" name="password" required).form__input
+                button.button.button--login.form__submit-btn(type= "submit") отправить
+                button(type="button").login-form__close-btn
+                    +icon("cross", "form__close-icon")       
+
+            

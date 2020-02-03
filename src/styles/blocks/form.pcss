@@ -24,6 +24,7 @@ $icon-width: 30px;
 .form__label {
     border-bottom: 2px solid $white;
     margin-bottom: 45px;
+    
     &:last-child {
         margin-bottom: 55px;
     }
@@ -99,5 +100,26 @@ $icon-width: 30px;
     @include tablets {
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+.form__label--admin{
+    border-color: $dark-grayish-blue;
+    .form__label-title {
+        margin-bottom: 10px;
+        padding-left: $icon-width;
+        color: $dark-gray;
+        @include tablets {
+            text-align: left;
+        }
+    }
+    .form__label-icon {
+        fill: $dark-gray;
+    }
+    .form__input{
+        color: $dark-grayish-blue;
+        @include placeholder {
+            color: $dark-grayish-blue;
+        }
     }
 }
