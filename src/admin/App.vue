@@ -65,7 +65,7 @@
               h3.works-form__title Добавление работы
             .works-form__img-container
               .works-form__img-tutorial Перетащите либо загрузите изображения
-              button(type="file").works-form__img-btn.submit-btn Загрузить
+              button(type="file").works-form__img-btn.filled-btn Загрузить
             .works-form__fields
               label.form-label
                 .form-label__title Название 
@@ -80,11 +80,29 @@
                 .form-label__title Добавление тега
                 input(type="text" required).admin-input.form-label__input
               .works-form__controls
-                button(type="reset").reset-btn Отмена
-                button(type="submit").submit-btn Загрузить
+                button(type="reset").text-btn-or-link Отмена
+                button(type="submit").filled-btn Загрузить
           ul.works__snippets.snippets                                                                                
             li.snippets-item.add-snippet-btn
-            li.snippets-item.works__snippet
+            li.snippets-item.works-snippet
+              .works-snippet__img-container
+                img(src="../images/content/preview1.jpg", alt="Превью работы").works-snippet__img
+                ul.tags.works-snippet__tags
+                  each tag in ["Html", "CSS", "Javascript"]
+                    li.tags__item=tag
+              .works-snippet__info
+                h3.works-snippet__title Новая работа 
+                p.works-snippet__desc Описание этой работы 
+                a(href="//google.com").works-snippet__link.text-btn-or-link http://google.com
+                .works-snippet__controls.snippet-controls
+                  button(type="button").snippet-button
+                    span.snippet-button__text Править
+                    .iconed-btn.iconed-btn--type--purple-pencil
+                  button(type="button").snippet-button
+                    span.snippet-button__text Удалить
+                    .iconed-btn.iconed-btn--type--cross
+            
+
 </template>
 
 <style lang="pcss">
@@ -96,6 +114,7 @@
 @import "../styles/blocks/avatar.pcss";
 @import "../styles/blocks/nav.pcss";
 @import "../styles/blocks/section-title.pcss";
+@import "../styles/blocks/tags.pcss";
 body {
   color: $font-dark-purple;
   background: $light-grayish-blue;
@@ -433,7 +452,7 @@ body {
     max-width: 315px;
 }
 
-.submit-btn {
+.filled-btn {
   line-height: 48px;
   font-weight: $bold;
   text-transform: uppercase;
@@ -449,7 +468,7 @@ body {
   }
 }
 
-.reset-btn {
+.text-btn-or-link {
   font-weight: $semibold;
   color: $bright-purple;
   &:hover {
@@ -469,6 +488,8 @@ body {
 .snippets-item {
   width: 30%;
   margin-right: 5%;
+  box-shadow: 7px 5px 10px $gray;
+  margin-bottom: 30px;
   &:nth-child(3){
     margin-right: 0;
   }
@@ -478,7 +499,7 @@ body {
   margin-bottom: 40px;
 }
 
-.works__snippet {
+.works-snippet {
   min-height: 400px;
   background: $white;
 }
@@ -511,5 +532,62 @@ body {
     line-height: 30px;
   } 
 }
+
+.works-snippet__info {
+  padding: 35px 30px 40px 30px;
+}
+
+.works-snippet__img-container {
+  position: relative;
+}
+
+.works-snippet__tags{
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+}
+
+.works-snippet__title {
+  font-size: 18px;
+  font-weight: $bold;
+  color: $dark-grayish-blue;
+  margin-bottom: 15px;
+}
+
+.works-snippet__desc {
+  line-height: 30px;
+  color: $dark-grayish-blue;
+  font-weight: $semibold;
+  opacity: 0.7;
+  margin-bottom: 15px;
+}
+
+.works-snippet__link {
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+
+.snippet-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.snippet-button {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.snippet-button__text {
+  margin-right: 10px;
+  color: $dark-grayish-blue;
+  font-weight: $semibold;
+  opacity: 0.5;
+}
+
+
 
 </style>
