@@ -126,7 +126,28 @@
                   textarea(type="text" required).admin-textarea.form-label__input
               .reviews-form__controls.form-controls
                 button(type="reset").text-btn-or-link Отмена
-                button(type="submit").filled-btn Загрузить                    
+                button(type="submit").filled-btn Загрузить
+          ul.reviews__snippets.snippets                                                                                
+            li.snippets-item
+              button(type="button").add-snippet-btn
+                .add-snippet-btn__text Добавить работу
+
+            li.snippets-item.reviews-snippet
+              .reviews-snippet__header.edit-form-header
+                .reviews-snippet__avatar
+                  img(src="../images/content/reviewsDmitry.jpg", alt="Фотография автора отзыва").avatar
+                .reviews-snippet__author-name  
+                  h3.edit-form-title.reviews-snippet__name Имя Фамилия
+                  span.reviews-snippet__role Программист
+              p.reviews-snippet__text Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, sit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, magni.
+              .reviews-snippet__controls.snippet-controls
+                  button(type="button").snippet-button
+                    span.snippet-button__text Править
+                    .iconed-btn.iconed-btn--type--purple-pencil
+                  button(type="button").snippet-button
+                    span.snippet-button__text Удалить
+                    .iconed-btn.iconed-btn--type--cross
+                                                                
 
 
 </template>
@@ -145,6 +166,8 @@ body {
   color: $font-dark-purple;
   background: $light-grayish-blue;
 }
+
+
 .header {
   width: 100%;
 }
@@ -519,6 +542,8 @@ body {
   margin-right: 5%;
   box-shadow: 7px 5px 10px $gray;
   margin-bottom: 30px;
+  min-height: 400px;
+  background: $white;
   &:nth-child(3) {
     margin-right: 0;
   }
@@ -526,11 +551,6 @@ body {
 
 .works__snippets {
   margin-bottom: 40px;
-}
-
-.works-snippet {
-  min-height: 400px;
-  background: $white;
 }
 
 .add-snippet-btn {
@@ -683,6 +703,40 @@ body {
   &:first-child{
     margin-left: 0;
   }
+}
+
+.reviews-snippet{
+  padding: 30px 25px 25px 25px; 
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.reviews-snippet__header{
+  margin-bottom: 30px;
+}
+
+.reviews-snippet__avatar{
+  width: 50px;
+  margin-right: 15px;
+}
+
+.reviews-snippet__role {
+  color: $dark-grayish-blue;
+  font-weight: $semibold;
+  opacity: 0.5;
+}
+
+.reviews-snippet__text {
+  color: $dark-grayish-blue;
+  font-weight: $semibold;
+  opacity: 0.5;
+  margin-bottom: 25px;
+}
+
+.reviews-snippet__controls {
+  margin-top: auto;
 }
 
 
