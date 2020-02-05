@@ -14,9 +14,14 @@ module.exports = (env, argv) => {
   const pcss = {
     test: /\.(p|post|)css$/,
     use: [
+      //Передача данных по цепочке читается СНИЗУ-ВВЕРХ
+
       isProductionBuild ? MiniCssExtractPlugin.loader : "vue-style-loader",
-      "css-loader",
-      "postcss-loader"
+      /* В случае если это сборка для прода,то CSS извлекается в отдельный файл, 
+      если dev, то подключается в тег style*/
+
+      "css-loader", //превращает переданный по цепочке css код в строку и подключает импорты
+      "postcss-loader"//превращает код postcss в обычный css
     ]
   };
 
@@ -27,7 +32,7 @@ module.exports = (env, argv) => {
 
   const js = {
     test: /\.js$/,
-    loader: "babel-loader",
+    loader: "babel-loader", //поддерживаемые версии браузеров указываются в package.json
     exclude: /node_modules/,
     options: {
       presets: ['@babel/preset-env'],
@@ -37,7 +42,7 @@ module.exports = (env, argv) => {
 
   const files = {
     test: /\.(png|jpe?g|gif|woff2?)$/i,
-    loader: "file-loader",
+    loader: "file-loader", //перемещает файлы в папку dist
     options: {
       name: "[hash].[ext]"
     }
@@ -47,20 +52,20 @@ module.exports = (env, argv) => {
     test: /\.svg$/,
     use: [
       {
-        loader: "svg-sprite-loader",
+        loader: "svg-sprite-loader", //собирает спрайт и прописывает svg/use
         options: {
           extract: true,
           spriteFilename: svgPath => `sprite${svgPath.substr(-4)}`
         }
       },
-      "svg-transform-loader",
+      "svg-transform-loader", 
       {
-        loader: "svgo-loader",
+        loader: "svgo-loader", //удаляет всё лишнее из svg файлов
         options: {
           plugins: [
             { removeTitle: true },
             {
-              removeAttrs: {
+              removeAttrs: { //удаляет указанные атрибуты из кода svg
                 attrs: "(fill|stroke)"
               }
             }
@@ -75,27 +80,27 @@ module.exports = (env, argv) => {
     oneOf: [
       {
         resourceQuery: /^\?vue/,
-        use: ["pug-plain-loader"]
+        use: ["pug-plain-loader"] //для работы с Vue файлами
       },
       {
-        use: ["pug-loader"]
+        use: ["pug-loader"] //для работы с обычными файлами
       }
     ]
   };
 
   const config = {
-    entry: {
+    entry: { //точки входа в которых подключаются зависимости 
       main: "./src/main.js",
       admin: "./src/admin/main.js",
       login: "./src/main.js"
     },
-    output: {
+    output: {//правила формирования выходных файлов и каталога в который их складывать
       path: path.resolve(__dirname, "./dist"),
       filename: "[name].[hash].build.js",
       publicPath: isProductionBuild ? publicPath : "",
       chunkFilename: "[chunkhash].js"
     },
-    module: {
+    module: {//правила обработки зависимостей
       rules: [pcss, vue, js, files, svg, pug]
     },
     resolve: {
@@ -106,12 +111,12 @@ module.exports = (env, argv) => {
       extensions: ["*", ".js", ".vue", ".json"]
     },
     devServer: {
-      historyApiFallback: true,
-      noInfo: false,
-      overlay: true
+      historyApiFallback: true, //нужен для SPA
+      noInfo: false, //Включает логирование в консоль
+      overlay: true //Отображение ошибок оверлеем на страничке
     },
     performance: {
-      hints: false
+      hints: false //отключает подсказки webpack
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -128,21 +133,25 @@ module.exports = (env, argv) => {
         filename: "login/index.html",
         chunks: ["login"]
       }),
-      new SpriteLoaderPlugin({ plainSprite: true }),
-      new VueLoaderPlugin()
+      new SpriteLoaderPlugin({ plainSprite: true }), /*собирает файл со спрайтом
+      если использовать только loader, то спрайт подключается целиком на страницу*/
+
+      new VueLoaderPlugin() //требуется для vue-loader
     ],
     devtool: "#eval-source-map"
   };
 
-  if (isProductionBuild) {
+  if (isProductionBuild) { //доп-действия для прода
     config.devtool = "none";
     config.plugins = (config.plugins || []).concat([
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: '"production"'
+          /*Передаём в плагины и зависимости 
+          переменную окружения*/  
         }
       }),
-      new MiniCssExtractPlugin({
+      new MiniCssExtractPlugin({ //экспорт стилей в отдельные файлы
         filename: "[name].[contenthash].css",
         chunkFilename: "[contenthash].css"
       })
@@ -151,12 +160,12 @@ module.exports = (env, argv) => {
     config.optimization = {};
 
     config.optimization.minimizer = [
-      new TerserPlugin({
+      new TerserPlugin({ //сжимает JS код
         cache: true,
         parallel: true,
         sourceMap: false
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({}) //сжимает CSS в файлах
     ];
   }
 

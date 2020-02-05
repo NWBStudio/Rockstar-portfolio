@@ -37,7 +37,7 @@ script(type="text/x-template")#slider-previews
         li.previews__item(
             v-for="(work, ndx) in works"
             :class="{'previews__item--active': currentWork.id === work.id}"
-            v-show="foo(ndx)"
+            v-show="displayThreeOnDesktop(ndx)"
         ) 
             a.previews__button(@click="$emit('previewClick', work.id)")
                 img.previews__pic(:src="work.img", alt="Уменьшенное превью работы")         

@@ -4,7 +4,7 @@ const previews = {
     template: "#slider-previews",
     props: ["works", "currentWork", "currentIndex", "hdScreen"],
     methods:{
-        foo(ndx){ //костыль для адаптива - уменьшает количество отображаемых превьюх с 4 до 3
+        displayThreeOnDesktop(ndx){ //костыль для адаптива - уменьшает количество отображаемых превьюх с 4 до 3
             let pass = false;
             if (this.hdScreen) {
                 pass = true;
