@@ -26,7 +26,11 @@ module.exports = (env, argv) => {
   };
 
   const vue = {
-    test: /\.vue$/,
+    /** Работает со всеми встреченными 
+     * импортами vue файла (с тегами template,
+     * style, etc.)
+     */
+    test: /\.vue$/, 
     loader: "vue-loader"
   };
 
