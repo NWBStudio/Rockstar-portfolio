@@ -16,7 +16,7 @@ new Vue ({
                 groupCells: true,
                 freeScroll: false,
                 contain: true,
-                draggable: false //если потребуется включение, то нужно сделать проверку состояния стрелок
+                draggable: false // если потребуется включение, то нужно сделать проверку состояния стрелок
             },
             reviews: []
         }
@@ -32,12 +32,12 @@ new Vue ({
             this.checkArrows();
         },
         checkArrows() {
-            let prevButton = this.$el.querySelector('#reviewsPrev');
-            let nextButton = this.$el.querySelector('#reviewsNext');
-            if(this.$refs.flickity.selectedIndex() == 0){
+            const prevButton = this.$el.querySelector('#reviewsPrev');
+            const nextButton = this.$el.querySelector('#reviewsNext');
+            if(this.$refs.flickity.selectedIndex() === 0){
                 prevButton.disabled = true;
                 nextButton.disabled = false;
-            } else if (this.$refs.flickity.selectedIndex() == this.$refs.flickity.slides().length - 1){
+            } else if (this.$refs.flickity.selectedIndex() === this.$refs.flickity.slides().length - 1){
                 nextButton.disabled = true;
                 prevButton.disabled = false;
             } else {

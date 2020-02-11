@@ -44,9 +44,6 @@
 @import "../../../styles/misc/variables.pcss";
 @import "../../../styles/misc/mixins.pcss";
 
-.about {
-  padding: 60px 0 75px 0;
-}
 
 .about__title {
   margin-bottom: 50px;

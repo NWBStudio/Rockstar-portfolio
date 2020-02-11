@@ -4,7 +4,7 @@ import router from './router';
 
 
 new Vue({
-  el: "#app-root", //рендер компонента из указанного шаблона,
+  el: "#app-root", // рендер компонента из указанного шаблона,
   router,
   render: h => h(App)
 });

@@ -1,27 +1,21 @@
+$border-width: 3px;
+$vert-padding: 20px;
+$vert-padding-admin: 30px;
+$line-height: 30px;
+
 .nav__list {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.nav__item {
-    padding: 20px 0;
+.nav__item{
+    height: calc($vert-padding * 2 + $line-height + $border-width);
     @include desktop {
-        padding: 15px 0;
+        height: calc($vert-padding * 2 + $line-height + $border-width - 5px);
     }
-    &:last-child {
-        margin-right: 0;
-    }
-    &:hover {
-        .nav__link {
-            color: $amber;
-        }
-        border-bottom: 3px solid $amber;
-        margin-bottom: -3px;
-        @include tablets {
-            border-bottom: none;
-            margin-bottom: 15px;
-        }
+    @include tablets {
+        margin-bottom: 15px;
     }
 }
 
@@ -29,7 +23,20 @@
     font-size: 16px;
     line-height: 30px;
     color: $white;
+    padding: $vert-padding 0px;
+    display: block; // чтобы работали отступы
+    &:hover {
+        color: $amber;
+        border-bottom: $border-width solid $amber;
+    }
+    @include desktop {
+        padding: calc($vert-padding - 5px) 0;
+    }
+    @include tablets {
+        border-bottom: none;
+    }
 }
+
 
 .nav--footer {
     width: 70%;
@@ -44,7 +51,6 @@
         }
     }
     .nav__item {
-        padding-top: 0;
         @include tablets {
             margin-right: 11%;
             padding-bottom: 10px;
@@ -54,33 +60,35 @@
             margin-right: 22%;
         }
     }
+    .nav__link {
+        padding-top: 0;
+    }
 }
 
 .nav--admin {
-    .nav__item {
-        padding: 30px 10px;
+    .nav__item{
+        height: calc($vert-padding-admin * 2 + $line-height + $border-width);
+    }
+    .nav__link {
+        padding: $vert-padding-admin 10px;
+        color: $dark-grayish-blue;
+        font-weight: $semibold;
+        &:hover{
+            color: $blueish-purple;
+            border-color: $blueish-purple;
+        }
+        &--active{
+            border-bottom: $border-width solid $blueish-purple;
+            color: $blueish-purple;
+        }
     }
 
-    .nav__item--active {
-        border-bottom: 3px solid $blueish-purple;
-        margin-bottom: 0;
-        .nav__link{
-            color: $blueish-purple;
-        }
-    }
-    .nav__item:hover {
-        .nav__link{
-            color: $blueish-purple;
-        }
-        border-color: $blueish-purple;
+    .nav__link--active:hover{
+        border-bottom: $border-width solid $blueish-purple;
+        color: $blueish-purple;
     }
 
     .nav__list {
         width: 25%;
-    }
-
-    .nav__link{
-        color: $dark-grayish-blue;
-        font-weight: $semibold;
     }
 }
