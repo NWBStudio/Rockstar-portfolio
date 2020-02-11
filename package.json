@@ -16,6 +16,7 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.3.1",
     "acorn": "^6.0.5",
     "acorn-dynamic-import": "^4.0.0",
@@ -59,6 +60,7 @@
     "last 2 versions"
   ],
   "dependencies": {
+    "axios": "^0.19.2",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
     "pug": "^2.0.3",
@@ -66,6 +68,7 @@
     "signale": "^1.4.0",
     "vue": "^2.6.7",
     "vue-flickity": "^1.2.1",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.2",
+    "vuex": "^3.1.2"
   }
 }

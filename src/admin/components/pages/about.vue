@@ -1,13 +1,15 @@
 <template lang="pug">
     section.about
         .container.about__inner
-          h2.section-title.section-title--admin.about__title Блок "Обо мне"
+          .about__title-row
+            h2.section-title.section-title--admin.about__title Блок "Обо мне"
+            button.about__add-group-btn.text-btn-or-link Добавить группу
           ul.about__forms
             li.about-form.about-form--new.edit-form
-              .about-form__top-row.edit-form-header
-                input(type="text" placeholder="Название новой группы" required).about-form__title.admin-input
-                button(type="button").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
-                button(type="button").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
+              form(@submit.prevent="addNewCategory").about-form__top-row.edit-form-header
+                input(v-model="title" type="text" placeholder="Название новой группы" required).about-form__title.admin-input
+                button(type="submit").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
+                button(type="reset").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
                 button(type="button").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
               .about-form__middle-row
               .about-form__bottom-row
@@ -39,16 +41,52 @@
                   button(type= "submit").new-skill-form__submit +
 </template>
 
+<script>
+import { mapActions } from "vuex";
+export default {
+  data: () =>  ({
+    title: ""
+  }),
+  methods: {
+    ...mapActions("categories", ["addCategory"]),
+    addNewCategory(){
+      this.addCategory(this.title);
+    }
+  }
+};
+</script>
+
 <style lang="postcss" scoped>
 
 @import "../../../styles/misc/variables.pcss";
 @import "../../../styles/misc/mixins.pcss";
 
 
-.about__title {
+.about__title-row {
+  display: flex;
   margin-bottom: 50px;
 }
 
+.about__title {
+  margin-right: 10px;
+}
+
+.about__add-group-btn{
+  display: flex;
+    &:before {
+        content: "+";
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-image: linear-gradient(to right, #006aed, #3f35cb);
+        line-height: 20px;
+        color: #fff;
+        margin-right: 13px;
+        flex-shrink: 0;
+        flex-basis: 20px;
+      }
+}
 .about__forms {
   display: flex;
   flex-wrap: wrap;
