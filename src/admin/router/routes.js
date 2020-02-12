@@ -1,9 +1,9 @@
 export default [
     {
         path: "/",
-        /** Используется синтаксис возврата компонента
-         из функции, чтобы отдельно не прописывать
-         импорты компонентов */
+        /** Динамический импорт с lazy-load,
+         * для работы нужен плагин для babel
+         * syntax-dynamic-import */
         component: () => import("../components/pages/about.vue"),
         meta: {
             title: "Блок «Обо мне»"
@@ -22,12 +22,13 @@ export default [
         meta: {
             title: "Блок «Отзывы»"
         }
+    },
+    {
+      path: "/login",
+      component: () => import("../components/pages/login.vue"),
+      meta: {
+            title: "Авторизация",
+            public: true
+      }
     }
-    // {
-    //   path: "/login",
-    //   component: () => import("components/pages/login.vue"),
-    //   meta: {
-    //     public: true
-    //   }
-    // }
 ];

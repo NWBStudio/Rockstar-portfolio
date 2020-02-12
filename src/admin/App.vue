@@ -8,9 +8,9 @@
 <script>
 export default {
   components: {
-    /** Используется синтаксис возврата компонента
-    из функции, чтобы отдельно не прописывать
-    импорты компонентов */
+    /** Динамический импорт с lazy-load,
+         * для работы нужен плагин для babel
+         * syntax-dynamic-import */
     adminHeader: () => import("./components/header"),
     tabs: () => import("./components/tabs")
   }
