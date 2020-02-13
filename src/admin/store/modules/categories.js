@@ -4,13 +4,13 @@ export default {
         categories: []
     },
     mutations: {
-        SET_CATEGORIES: (state, data) => state.categories = data
+        SET_CATEGORIES: (state, data) => { const updatedState = state; updatedState.categories = data; return updatedState }
     },
     actions: {
         async addCategory(store, title){ // title требует API
             try {
 
-                const response = await this.$axios.post("/categories", {title});
+                await this.$axios.post("/categories", {title});
                 
             } catch (error) { // error возвращает axios в случае ошибки
                 throw new Error(

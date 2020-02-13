@@ -7,7 +7,7 @@ const  skill = {
         drawColoredCircle() {
           const circle = this.$refs["color-circle"];
           const dashArray = parseInt(
-            getComputedStyle(circle).getPropertyValue("stroke-dasharray")
+            getComputedStyle(circle).getPropertyValue("stroke-dasharray"), 10
           );
           const percent = (dashArray / 100) * (100 - this.skillPercent);
     
@@ -24,22 +24,25 @@ const  skillsRow = {
     components: {
         skill
     },
-    props: ["row"] //регистрация свойства с именем row
+    props: ["row"] // регистрация свойства с именем row
 }
 
-new Vue({
+const drawSkillsWidget = new Vue({
     el: "#skills-component",
-    template: "#skills-list",
+    components: {
+        skillsRow
+    },
     data() {
         return {
             skills: []
         };
     },
-    components: {
-        skillsRow
-    },
     created() {
         const data = require("../data/skills.json");
-        this.skills = data; //наполнение массива данными из json файла с готовыми путями для картинок
-    }
+        this.skills = data; // наполнение массива данными из json файла с готовыми путями для картинок
+    },
+    template: "#skills-list"
+    
 });
+
+window.drawSkillsWidget = drawSkillsWidget;

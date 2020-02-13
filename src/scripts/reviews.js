@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Flickity from 'vue-flickity';
 
-new Vue ({
+const reviewsSliderApp = new Vue ({
     el: '#reviews',
     components: {
         Flickity
@@ -20,6 +20,10 @@ new Vue ({
             },
             reviews: []
         }
+    },
+    created(){
+        const data = require("../data/reviews.json");
+        this.reviews = this.imagesFilePaths(data);
     },
     methods: {
         next() {
@@ -48,16 +52,16 @@ new Vue ({
         },
         imagesFilePaths(data){
             return data.map(item => {
+                
                 const requirePic = require(`../images/content/reviews${item.avatar}.jpg`);
+                const updatedItem = item;
 
-                item.avatar = requirePic;
+                updatedItem.avatar = requirePic;
 
-                return item;
+                return updatedItem;
             });
         }
-    },
-    created(){
-        const data = require("../data/reviews.json");
-        this.reviews = this.imagesFilePaths(data);
     }
 });
+
+window.reviewsSliderApp = reviewsSliderApp;

@@ -3,10 +3,17 @@ module.exports = {
         es6: true,
         browser: true,
     },
+    globals: {
+        window : "readonly"
+    },
+    parserOptions :{
+        parser: "babel-eslint"
+    },
     extends : [
         'airbnb/base',
         'prettier',
         'plugin:vue/essential',
-        "prettier/vue"
+        "prettier/vue",
+        "plugin:vue/recommended"
     ]
 };

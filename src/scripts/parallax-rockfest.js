@@ -3,7 +3,7 @@ const parallaxRockLayers = parallaxRock.children;
 
 function moveLayersOnScroll(scroll, layers, speed) {
     Array.from(layers).forEach(layer => {
-
+        
         const divider = layer.dataset.speed;
         const strafe = scroll * divider / speed;
 
@@ -12,7 +12,7 @@ function moveLayersOnScroll(scroll, layers, speed) {
     
 }
 
-window.addEventListener('scroll', e => {
+window.addEventListener('scroll', () => {
     const wScroll = window.pageYOffset;
     moveLayersOnScroll(wScroll, parallaxRockLayers, 20);
 })

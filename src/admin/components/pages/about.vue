@@ -1,46 +1,46 @@
 <template lang="pug">
     section.about
-        .container.about__inner
-          .about__title-row
-            h2.section-title.section-title--admin.about__title Блок "Обо мне"
-            button.about__add-group-btn.text-btn-or-link Добавить группу
-          ul.about__forms
-            li.about-form.about-form--new.edit-form
-              .skills-group
-                form(@submit.prevent="addNewCategory").about-form__top-row.edit-form-header
-                  input(v-model="title" type="text" placeholder="Название новой группы" required).about-form__title.admin-input
-                  button(type="submit").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
-                  button(type="reset").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
-                  button(type="button").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
-                .about-form__middle-row
-                .about-form__bottom-row
-                  form.new-skill-form.about-form__new-skill
-                    input(type="text" placeholder="Новый навык" required disabled ).new-skill-form__skill-name.admin-input
-                    input(type="text" placeholder="0" required disabled ).new-skill-form__skill-percent.admin-input
-                    button(type= "submit" disabled).new-skill-form__submit +
-            li.about-form.edit-form
-              .skills-group
-                .about-form__top-row.edit-form-header
-                  h3.about-form__title Workflow
-                  button(type="button").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
-                  button(type="button").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
-                  button(type="button").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
-                .about-form__middle-row
-                  - var skills = [["Webpack", "100"],["Git", "70"],["Vue", "100"],["Terminal", "50"]]
-                      table.skills-table
-                        each skill in skills  
-                          tr.skills-table__row
-                            td.skills-table__skill-name=skill[0]
-                            td.skills-table__skill-percent=skill[1]
-                            td.skills-table__skill-percent-sign %
-                            td.skills-table__skill-percent-controls 
-                              .iconed-btn.iconed-btn--type--gray-pencil
-                              .iconed-btn.iconed-btn--type--trash
-                .about-form__bottom-row
-                  form.new-skill-form.about-form__new-skill
-                    input(type="text" placeholder="Новый навык" required name="title").new-skill-form__skill-name.admin-input
-                    input(type="number" placeholder="0" required name="percent").new-skill-form__skill-percent.admin-input
-                    button(type= "submit").new-skill-form__submit +
+      .container.about__inner
+        .about__title-row
+          h2.section-title.section-title--admin.about__title Блок "Обо мне"
+          button.about__add-group-btn.text-btn-or-link Добавить группу
+        ul.about__forms
+          li.about-form.about-form--new.edit-form
+            .skills-group
+              form(@submit.prevent="addNewCategory").about-form__top-row.edit-form-header
+                input(v-model="title" type="text" placeholder="Название новой группы" required).about-form__title.admin-input
+                button(type="submit").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
+                button(type="reset").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
+                button(type="button").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
+              .about-form__middle-row
+              .about-form__bottom-row
+                form.new-skill-form.about-form__new-skill
+                  input(type="text" placeholder="Новый навык" required disabled ).new-skill-form__skill-name.admin-input
+                  input(type="text" placeholder="0" required disabled ).new-skill-form__skill-percent.admin-input
+                  button(type= "submit" disabled).new-skill-form__submit +
+          li.about-form.edit-form
+            .skills-group
+              .about-form__top-row.edit-form-header
+                h3.about-form__title Workflow
+                button(type="button").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
+                button(type="button").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
+                button(type="button").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
+              .about-form__middle-row
+                - var skills = [["Webpack", "100"],["Git", "70"],["Vue", "100"],["Terminal", "50"]]
+                    table.skills-table
+                      each skill in skills  
+                        tr.skills-table__row
+                          td.skills-table__skill-name=skill[0]
+                          td.skills-table__skill-percent=skill[1]
+                          td.skills-table__skill-percent-sign %
+                          td.skills-table__skill-percent-controls 
+                            .iconed-btn.iconed-btn--type--gray-pencil
+                            .iconed-btn.iconed-btn--type--trash
+              .about-form__bottom-row
+                form.new-skill-form.about-form__new-skill
+                  input(type="text" placeholder="Новый навык" required name="title").new-skill-form__skill-name.admin-input
+                  input(type="number" placeholder="0" required name="percent").new-skill-form__skill-percent.admin-input
+                  button(type= "submit").new-skill-form__submit +
               
 </template>
 
