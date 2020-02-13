@@ -1,20 +1,18 @@
 <template lang="pug">
-    header.header
-        .header__user-panel
-            .container.header__user-panel-inner
-                .header__avatar
-                    img(src="../../images/content/user.jpg", alt="Аватар пользователя").avatar
-                .header__user-name Владимир Куприенков
-                h3.header__title Панель администрирования
-                a(href="#").header__quit-btn Выйти
+header.header
+  .header__user-panel
+    .container.header__user-panel-inner
+      .header__avatar
+        img(src="../../images/content/user.jpg", alt="Аватар пользователя").avatar
+      .header__user-name Владимир Куприенков
+      h3.header__title Панель администрирования
+      a(href="#").header__quit-btn Выйти
+</template>
 
-        
-</template>   
 <style lang="postcss" scoped>
-
 @import "../../styles/misc/variables.pcss";
 @import "../../styles/misc/mixins.pcss";
-    
+
 .header {
   width: 100%;
 }
@@ -54,9 +52,11 @@
   color: $white;
   text-decoration: underline;
   opacity: 0.5;
+
   &:hover {
     opacity: 1;
   }
+
   &:active {
     padding-bottom: 3px;
   }
@@ -67,4 +67,4 @@
   width: 100%;
   box-shadow: 2px 2px 8px $gray;
 }
-</style>                         
+</style>

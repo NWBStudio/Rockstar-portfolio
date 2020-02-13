@@ -15,5 +15,8 @@ module.exports = {
         'plugin:vue/essential',
         "prettier/vue",
         "plugin:vue/recommended"
-    ]
+    ],
+    rules: {
+        "no-plusplus": "off"
+    }
 };
