@@ -14,14 +14,14 @@ module.exports = (env, argv) => {
   const pcss = {
     test: /\.(p|post|)css$/,
     use: [
-      //Передача данных по цепочке читается СНИЗУ-ВВЕРХ
+      // Передача данных по цепочке читается СНИЗУ-ВВЕРХ
 
       isProductionBuild ? MiniCssExtractPlugin.loader : "vue-style-loader",
       /* В случае если это сборка для прода,то CSS извлекается в отдельный файл, 
-      если dev, то подключается в тег style*/
+      если dev, то подключается в тег style */
 
-      "css-loader", //превращает переданный по цепочке css код в строку и подключает импорты
-      "postcss-loader"//превращает код postcss в обычный css
+      "css-loader", // превращает переданный по цепочке css код в строку и подключает импорты
+      "postcss-loader"// превращает код postcss в обычный css
     ]
   };
 
@@ -183,3 +183,5 @@ module.exports = (env, argv) => {
 //   loader: 'eslint-loader',
 //   exclude: /node_modules/
 // }
+/** С этим правилом вебпак не даст собрать проект пока не исправлены
+ * ошибки найденные ESLint */  

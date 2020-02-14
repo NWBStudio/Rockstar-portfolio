@@ -4,31 +4,87 @@ export default {
         categories: []
     },
     mutations: {
-        SET_CATEGORIES: (state, data) => { const updatedState = state; updatedState.categories = data; return updatedState },
-        ADD_CATEGORY: (state, category) => { const updatedState = state; state.categories.push(category); return updatedState },
+        SET_CATEGORIES: (state, data) => { 
+            const updatedState = state; 
+            updatedState.categories = data; 
+            return updatedState; 
+        },
+        ADD_CATEGORY: (state, category) => { 
+            const updatedState = state; 
+            updatedState.categories.unshift(category); 
+            return updatedState; 
+        },
+        EDIT_CATEGORY: (state, editedCategory) =>{
+            const updatedState = state;
+
+
+            const findCategory = category => {
+                let updatedCategory = category;
+                if(updatedCategory.id === editedCategory.id){
+                    updatedCategory = editedCategory;
+                } 
+                return updatedCategory;
+            }
+
+            updatedState.categories = state.categories.map(findCategory);
+        },
+        REMOVE_CATEGORY: (state, deletedCategory) =>{
+            const updatedState = state;
+            updatedState.categories = updatedState.categories.filter(
+                category => category.id !== deletedCategory.id
+            );
+            return updatedState; 
+        },
         ADD_SKILL: (state, newSkill) => {
             const updatedState = state;
             updatedState.categories = state.categories.map(category => { // берём массив с категориями
-                const updatedCategory = category;
                 /** В нём ищем категорию по id, который 
                  * прилетает вместе со скиллом */
-                if(updatedCategory.id === newSkill.category){  
-                    updatedCategory.skills.push(newSkill); // добавляем скилл в массив скиллов
+                if(category.id === newSkill.category){  
+                    category.skills.push(newSkill); // добавляем скилл в массив скиллов
                 }
-                return updatedCategory; // возвращаем категорию с новым скиллом
+                return category; // возвращаем категорию с новым скиллом
             })
         },
         REMOVE_SKILL: (state, deletedSkill) => {
             const updatedState = state;
-            updatedState.categories = state.categories.map(category => {
+           
+            const removeSkillInCategory = category =>{
+                const updatedCategory = category;
+                updatedCategory.skills = updatedCategory.skills.filter(
+                    skill => skill.id !== deletedSkill.id
+                );
+            }  
+
+            const findCategory = category => {
                 const updatedCategory = category;
                 if(updatedCategory.id === deletedSkill.category){
-                    updatedCategory.skills = updatedCategory.skills.filter(
-                        skill => skill.id !== deletedSkill.id
-                    )  
+                    removeSkillInCategory(category);
                 } 
                 return updatedCategory;
-            })
+            }
+
+            updatedState.categories = state.categories.map(findCategory);
+        },
+        EDIT_SKILL: (state, editedSkill) => {
+            const updatedState = state;
+           
+            const editSkillInCategory = category =>{
+                const updatedCategory = category;
+                updatedCategory.skills = updatedCategory.skills.map(skill => {
+                    return skill.id === editedSkill.id ? editedSkill : skill;
+                });
+            }  
+
+            const findCategory = category => {
+                const updatedCategory = category;
+                if(updatedCategory.id === editedSkill.category){
+                    editSkillInCategory(category);
+                } 
+                return updatedCategory;
+            }
+
+            updatedState.categories = state.categories.map(findCategory);
         }  
     },
     actions: {
@@ -44,6 +100,23 @@ export default {
                 );
             }
             
+        },
+        async editCategory ( { commit }, editedCategory){
+            const title = editedCategory.category;
+            try {
+                const { data : { category } } = await this.$axios.post(`/categories/${editedCategory.id}`, { title });
+                commit("EDIT_CATEGORY", category);
+            } catch (error) {
+                
+            }
+        },
+        async removeCategory( { commit }, category){
+            try {
+                await this.$axios.delete(`/categories/${category.id}`);
+                commit("REMOVE_CATEGORY", category);
+            } catch (error) {
+                
+            }
         },
         async fetchCategories({
             commit // деструктуризация объекта store

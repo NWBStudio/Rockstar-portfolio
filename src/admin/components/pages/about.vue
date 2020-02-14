@@ -3,15 +3,15 @@ section.about
     .container.about__inner
         .about__title-row
             h2.section-title.section-title--admin.about__title Блок "Обо мне"
-            button.about__add-group-btn.text-btn-or-link Добавить группу
+            button(type="button" @click="newForm = true").about__add-group-btn.text-btn-or-link Добавить группу
         ul.about__forms
-            li.about-form.about-form--new.edit-form
+            li(v-if="newForm === true").about-form.about-form--new.edit-form
                 .skills-group
                     form(@submit.prevent="addNewCategory").about-form__top-row.edit-form-header
                         input(v-model="title" type="text" placeholder="Название новой группы" required).about-form__title.admin-input
-                        button(type="submit").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
-                        button(type="reset").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
-                        button(type="button").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
+                        .about-form__controls   
+                          button(type="submit").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
+                          button(type="button" @click="newForm = false").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn
                     .about-form__middle-row
                     .about-form__bottom-row
                         form.new-skill-form.about-form__new-skill
@@ -21,6 +21,7 @@ section.about
             li.about-form.edit-form(v-for="category in categories")
                 skills-group(
                   :category="category"
+                  ref="skills" 
                 )
 </template>
 
@@ -35,7 +36,8 @@ export default {
     skillsGroup: () => import("../skills-group")
   },
   data: () => ({
-    title: ""
+    title: "",
+    newForm: false
   }),
   computed: {
     ...mapState("categories", {
@@ -54,6 +56,8 @@ export default {
     async addNewCategory() {
       try {
         await this.addCategory(this.title);
+        this.newForm = false;
+        this.title = "";
       } catch (error) {
         /** должно быть прогнано через хелпер до нормального вида и
          * выведено в тултип из стайлгайда */
@@ -64,9 +68,11 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 @import "../../../styles/misc/variables.pcss";
 @import "../../../styles/misc/mixins.pcss";
+
+$side-padding: 10px;
 
 .about__title-row {
   display: flex;
@@ -101,6 +107,13 @@ export default {
   width: 100%;
 }
 
+.skills-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
+}
+
 .about-form {
   width: 47%;
   margin-right: 6%;
@@ -110,24 +123,11 @@ export default {
   &:nth-child(2n) {
     margin-right: 0;
   }
-
-  &--new {
-    .about-form__edit-btn {
-      display: none;
-    }
-
-    .about-form__submit-btn,
-    .about-form__cancel-btn {
-      display: block;
-    }
-  }
 }
 
-.skills-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 400px;
+.about-form__top-row{
+  padding-left: $side-padding;
+  padding-right: $side-padding;
 }
 
 .about-form__middle-row {
@@ -146,9 +146,11 @@ export default {
   margin-right: 20px;
 }
 
-.about-form__submit-btn,
-.about-form__cancel-btn {
-  display: none;
+.about-form__controls {
+  display: flex;
+  align-items: center;
+  width: 55px;
+  justify-content: space-between;
 }
 
 .new-skill-form__skill-title {
@@ -205,36 +207,4 @@ export default {
   }
 }
 
-.skills-table {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  color: $font-dark-blue;
-}
-
-.skills-table__row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.skills-table__skill-title {
-  margin-right: auto;
-}
-
-.skills-table__skill-percent {
-  margin-right: 10px;
-}
-
-.skills-table__skill-percent-sign {
-  margin-right: 15%;
-}
-
-.skills-table__skill-percent-controls {
-  display: flex;
-  align-items: center;
-  width: 55px;
-  justify-content: space-between;
-}
 </style>

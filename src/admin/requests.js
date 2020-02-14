@@ -12,7 +12,7 @@ const requests = axios.create({
      * настройками в виде объекта  */ 
     baseURL: "https://webdev-api.loftschool.com/",
 
-    header: {
+    headers: { // если header, то будет отправлять только до перезагрузки страницы хD
         /** Авторизация по методу
          * Bearer Authentication */
         "Authorization" : `Bearer ${token}`
