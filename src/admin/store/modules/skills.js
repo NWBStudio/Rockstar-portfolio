@@ -8,7 +8,6 @@ export default {
         const {
           data // деструктуризация response
         } = await this.$axios.post("/skills", skill);
-        console.log(data);
          
 
         /** При помощи действия дёргаем мутацию из модуля categories,
@@ -17,9 +16,7 @@ export default {
          * полученные с сервера данные о скилле который
          должен быть добавлен. */
         commit("categories/ADD_SKILL", data, {root : true });
-        console.log(data); 
       } catch (error) {
-        
       }
     },
     async removeSkill({ commit }, skill){

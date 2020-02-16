@@ -15,17 +15,24 @@
         button.button.button--login.form__submit-btn(type= "submit") отправить
         button(type="button").login-form__close-btn
             .form__label-icon.login-form__close-icon
+    error-tooltip(
+      :errorText= "errorText"
+    )            
 </template>
 
 <script>
 import $axios from "../../requests";
 
 export default {
+  components: {
+    errorTooltip: () => import("../errors-tooltip")
+  },
   data: () => ({
     user: {
       name: "",
       password: ""
-    }
+    },
+    errorText: "Ошибка"
   }),
   methods: {
     async login() {
@@ -46,7 +53,7 @@ export default {
          *  вернуться на страницу авторизации */
         this.$router.replace("/");
       } catch (error) {
-
+          this.errorText = error.response.data.error;
       }
     }
   }
@@ -58,6 +65,13 @@ export default {
 @import "../../../styles/misc/mixins.pcss";
 @import "../../../styles/blocks/button.pcss";
 @import "../../../styles/blocks/form.pcss";
+
+.error-tooltip-container{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .login-wrapper {
   position: fixed;
