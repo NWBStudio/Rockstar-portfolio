@@ -6,8 +6,23 @@ header.header
         img(src="../../images/content/user.jpg", alt="Аватар пользователя").avatar
       .header__user-name Владимир Куприенков
       h3.header__title Панель администрирования
-      a(href="#").header__quit-btn Выйти
+      a(@click.prevent="logoutUser").header__quit-btn Выйти
 </template>
+
+<script>
+
+import { mapActions } from "vuex";
+
+export default {
+  methods: {
+    ...mapActions("user", ["logout"]),
+    logoutUser() {
+      this.logout();
+      this.$router.replace("/login");
+    }
+  }
+}
+</script>
 
 <style lang="postcss" scoped>
 @import "../../styles/misc/variables.pcss";
