@@ -25,10 +25,19 @@
 
 .skills-row__list {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     flex-wrap: wrap;
     @include phones {
         justify-content: center;
+    }
+}
+
+.skills-row__item{
+    margin-left: 2%;
+    &:first-child{
+        margin-left: 0;
+    }
+    @include phones {
+        margin-left: 0;
     }
 }

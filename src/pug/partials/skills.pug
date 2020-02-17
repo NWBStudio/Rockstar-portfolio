@@ -1,15 +1,17 @@
-script(type="text/x-template")#skills-list
+script(type="text/x-template")#skills-group
     ul.skills
-        li.skills-item(v-for="row in skills") <!--Перебор массива skills объявленного в data-->
+        li.skills-item(v-for="category in categories") <!--Перебор массива skills объявленного в data-->
             //- Vue автоматом переводит из camelCase в kebab-case
-            skills-row(:row="row") 
+            skills-row(:category="category") 
             //- Передача в свойство row каждого элемента row массива skills 
 script(type="text/x-template")#skills-row
     .skills-row 
-        h3.skills-row__title {{row.skillsGroup}}
+        h3.skills-row__title {{category.category}}
         ul.skills-row__list
-            li.skills-row__item(v-for="(skillPercent, skillName) in row.skills") <!--Порядок параметров (значение, индекс/ключ)-->
-                skill(:skillName = "skillName" :skillPercent = "skillPercent")
+            li.skills-row__item(v-for="skill in category.skills") <!--Порядок параметров (значение, индекс/ключ)-->
+                skill(
+                    :skill="skill"
+                    )
 
 script(type="text/x-template")#skill
     .skill
@@ -19,5 +21,5 @@ script(type="text/x-template")#skill
             linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0")
                 stop(offset="0%" stop-color="#4d87ee")
                 stop(offset="100%" stop-color="#243fe5")
-        .skill__title {{skillName}}                                 
+        .skill__title {{skill.title}}                                 
 

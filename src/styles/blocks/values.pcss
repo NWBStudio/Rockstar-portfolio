@@ -6,10 +6,12 @@ $bg-slice-height: 1223px;
     background: $white url("../images/bg/graffiti.png") no-repeat;
     background-position: -160px 50%;
     padding: 135px 0 145px 0;
+    min-height: $bg-slice-height;
     @include tablets {
         background-position: 50% 90%;
         background-size: 384px;
         padding: 100px 0 450px 0;
+        min-height: $bg-slice-width;
     }
     @include phones {
         padding-bottom: 500px;

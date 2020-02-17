@@ -1,15 +1,25 @@
 import Vue from "vue";
+import axios from "axios";
+
+const $axios = axios.create({
+    /** создаём новый экземпляр с определёнными
+     * настройками в виде объекта  */ 
+    baseURL: "https://webdev-api.loftschool.com/",
+});
+
+
+
 
 const  skill = {
     template: "#skill",
-    props: ["skillName", "skillPercent"],
+    props: ["skill"],
     methods: {
         drawColoredCircle() {
           const circle = this.$refs["color-circle"];
           const dashArray = parseInt(
             getComputedStyle(circle).getPropertyValue("stroke-dasharray"), 10
           );
-          const percent = (dashArray / 100) * (100 - this.skillPercent);
+          const percent = (dashArray / 100) * (100 - this.skill.percent);
     
           circle.style.strokeDashoffset = percent;
         }
@@ -24,7 +34,7 @@ const  skillsRow = {
     components: {
         skill
     },
-    props: ["row"] // регистрация свойства с именем row
+    props: ["category"] // регистрация свойства с именем row
 }
 
 const drawSkillsWidget = new Vue({
@@ -34,14 +44,15 @@ const drawSkillsWidget = new Vue({
     },
     data() {
         return {
-            skills: []
+            categories: []
         };
     },
-    created() {
-        const data = require("../data/skills.json");
-        this.skills = data; // наполнение массива данными из json файла с готовыми путями для картинок
+    async created() {
+        const { data } = await $axios.get("/categories/260");
+        this.categories = data; // наполнение массива данными из json файла с готовыми путями для картинок
+        console.log(this.categories);
     },
-    template: "#skills-list"
+    template: "#skills-group"
     
 });
 

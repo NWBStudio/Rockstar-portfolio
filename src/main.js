@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import "./styles/main.pcss";
 import "./scripts/skills";
 import "./scripts/reviews";
