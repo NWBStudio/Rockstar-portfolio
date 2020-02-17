@@ -17,6 +17,7 @@ module.exports = {
         "plugin:vue/recommended"
     ],
     rules: {
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "no-alert": "off"
     }
 };

@@ -11,27 +11,26 @@ export default {
     },
     ADD_REVIEW: (state, review) => {
       const updatedState = state;
-      updatedState.review.unshift(review);
+      updatedState.reviews.push(review);
       return updatedState;
     },
-    EDIT_CATEGORY: (state, editedCategory) => {
+    EDIT_REVIEW: (state, editedReview) => {
       const updatedState = state;
 
-
-      const findCategory = category => {
-        let updatedCategory = category;
-        if (updatedCategory.id === editedCategory.id) {
-          updatedCategory = editedCategory;
+      const findReview = review => {
+        let updatedReview = review;
+        if (updatedReview.id === editedReview.id) {
+          updatedReview = editedReview;
         }
-        return updatedCategory;
+        return updatedReview;
       }
 
-      updatedState.categories = state.categories.map(findCategory);
+      updatedState.reviews = state.reviews.map(findReview);
     },
-    REMOVE_CATEGORY: (state, deletedCategory) => {
+    REMOVE_REVIEW: (state, deletedReview) => {
       const updatedState = state;
-      updatedState.categories = updatedState.categories.filter(
-        category => category.id !== deletedCategory.id
+      updatedState.reviews = updatedState.reviews.filter(
+        review => review.id !== deletedReview.id
       );
       return updatedState;
     },
@@ -65,8 +64,13 @@ export default {
            * в объект formData */
           formData.append(key, value);
         });
-
-        const response = await this.$axios.post('/reviews', formData);
+        try {
+          const {data} = await this.$axios.post('/reviews', formData);
+          commit("ADD_REVIEW", data);
+        } catch (error) {
+          
+        }
+        
       },
       async addCategory({ commit }, title) { // title требует API
         try {
@@ -81,19 +85,23 @@ export default {
         }
 
       },
-      async editCategory({ commit }, editedCategory) {
-        const title = editedCategory.category;
+      async editReview({ commit }, editedReview) {
+        const formData = new FormData();
+        Object.keys(editedReview).forEach(key => {
+          const value = editedReview[key];
+          formData.append(key, value);
+        });
         try {
-          const { data: { category } } = await this.$axios.post(`/categories/${editedCategory.id}`, { title });
-          commit("EDIT_CATEGORY", category);
+          const { data: { review } } = await this.$axios.post(`/reviews/${editedReview.id}`, formData);
+          commit("EDIT_REVIEW", review);
         } catch (error) {
 
         }
       },
-      async removeCategory({ commit }, category) {
+      async removeReview({ commit }, review) {
         try {
-          await this.$axios.delete(`/categories/${category.id}`);
-          commit("REMOVE_CATEGORY", category);
+          await this.$axios.delete(`/reviews/${review.id}`);
+          commit("REMOVE_REVIEW", review);
         } catch (error) {
 
         }

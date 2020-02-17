@@ -143,6 +143,9 @@ body {
   justify-content: space-between;
   width: 50%;
   max-width: 315px;
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 .filled-btn {
@@ -159,6 +162,9 @@ body {
   &:active {
     opacity: 0.4;
   }
+  &:disabled{
+    opacity: 0.4;
+  }
 }
 
 .text-btn-or-link {
@@ -168,6 +174,9 @@ body {
     opacity: 0.8;
   }
   &:active {
+    opacity: 0.4;
+  }
+  &:disabled{
     opacity: 0.4;
   }
 }
@@ -185,7 +194,7 @@ body {
   margin-bottom: 30px;
   min-height: 400px;
   background: $white;
-  &:nth-child(3) {
+  &:nth-child(3n) {
     margin-right: 0;
   }
 }

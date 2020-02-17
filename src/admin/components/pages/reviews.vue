@@ -1,14 +1,20 @@
 <template lang="pug">
 section.reviews
     .container.reviews__inner
-        add-review-form
+        review-form(
+          v-if="reviewFormIsActive"
+          :formType="formType"
+          @hideForm="reviewFormIsActive = false"
+          :editedReview="editedReview"
+        )
         ul.reviews__snippets.snippets                                                                                
             li.snippets-item
-                button(type="button").add-snippet-btn
+                button(type="button" @click="openAddForm").add-snippet-btn
                     .add-snippet-btn__text Добавить работу
             li.snippets-item.reviews-snippet(v-for="review in reviews")
                 review-snippet(
                     :review="review"
+                    @openEditForm="openEditForm"
                 )
 </template>
 
@@ -20,8 +26,15 @@ import {
 
 export default {
   components: {
-    addReviewForm: () => import("../add-review-form"),
+    reviewForm: () => import("../review-form"),
     reviewSnippet: () => import("../review-snippet")
+  },
+  data () {
+    return {
+      reviewFormIsActive: false,
+      formType: "",
+      editedReview: {}  
+    }
   },
   computed: {
     ...mapState("reviews", {
@@ -32,7 +45,17 @@ export default {
     this.fetchReviews();
   },
   methods: {
-    ...mapActions('reviews', ['fetchReviews'])
+    ...mapActions('reviews', ['fetchReviews']),
+    openAddForm(){
+      this.reviewFormIsActive=true;
+      this.formType='add'
+    },
+    openEditForm(review){
+      this.editedReview = "";
+      this.editedReview = {...review};
+      this.formType = 'edit';
+      this.reviewFormIsActive = true;
+    }
   },
 }
 </script>
@@ -134,6 +157,8 @@ export default {
   font-weight: $semibold;
   opacity: 0.5;
   margin-bottom: 25px;
+  word-break: break-word;
+
 }
 
 .reviews-snippet__controls {

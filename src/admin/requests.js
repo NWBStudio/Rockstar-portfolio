@@ -36,7 +36,8 @@ requests.interceptors.response.use(
         if (error.response.status === 401) {
 
             /** Делаем новый запрос токена */
-            const {data : { token: newToken }} = await requests.post("/refreshToken");
+            const response = await requests.post("/refreshToken");
+            const newToken = response.data.token;
 
             /** Проставляем везде новый токен, в т.ч.
              * в повторном запросе */

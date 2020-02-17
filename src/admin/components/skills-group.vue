@@ -3,13 +3,13 @@
     div(v-if="editmode === false").about-form__top-row.edit-form-header
         h3.about-form__title {{ category.category }}
         .about-form__controls
-          button(type="button" @click="editmode = true").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
-          button(type="button" @click="removeExistedCategory").iconed-btn.iconed-btn--type--trash
+            button(type="button" @click="editmode = true").iconed-btn.iconed-btn--type--gray-pencil.about-form__edit-btn
+            button(type="button" @click="removeExistedCategory").iconed-btn.iconed-btn--type--trash
     div(v-else).about-form__top-row.edit-form-header
         input(type="text" placeholder="Заголовок" v-model="editedCategory.category").admin-input.about-form__title.about-form__title--input
         .about-form__controls
-          button(type="button" @click="editExistedCategory").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
-          button(type="button" @click="editmode = false").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn    
+            button(type="button" @click="editExistedCategory").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
+            button(type="button" @click="editmode = false").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn    
     .about-form__middle-row
         - var skills = [["Webpack", "100"],["Git", "70"],["Vue", "100"],["Terminal", "50"]]
             table.skills-table
@@ -48,7 +48,7 @@ export default {
     /** Обычная функция вместо стрелочной 
      * из-за обращения к this */
     return {
-      skill: { 
+      skill: {
         /** Таким образом здесь получается как-бы 
          * кэш текущего скилла, который переписывается при
          * каждом вызове метода addNewSkill */
@@ -58,7 +58,9 @@ export default {
       },
       loading: false,
       editmode: false,
-      editedCategory: {...this.category}
+      editedCategory: {
+        ...this.category
+      }
     }
   },
   methods: {
@@ -72,8 +74,7 @@ export default {
         this.skill.percent = "";
       } catch (error) {
 
-      }
-      finally {
+      } finally {
         this.loading = false;
       }
     },
@@ -82,14 +83,17 @@ export default {
         await this.editCategory(this.editedCategory);
         this.editmode = false;
       } catch (error) {
-        
+
       }
     },
     async removeExistedCategory() {
-      try {
-        await this.removeCategory(this.category);
-      } catch (error) {
-        
+      const areYouSure = window.confirm("Удалить категорию?"); 
+      if (areYouSure === true) {
+        try {
+          await this.removeCategory(this.category);
+        } catch (error) {
+
+        }
       }
     }
   }
@@ -97,7 +101,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-
 @import "../../styles/misc/variables.pcss";
 @import "../../styles/misc/mixins.pcss";
 
@@ -108,6 +111,4 @@ export default {
   flex-direction: column;
   color: $font-dark-blue;
 }
-
-
 </style>

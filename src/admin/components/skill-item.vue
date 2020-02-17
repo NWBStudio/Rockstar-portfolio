@@ -44,11 +44,14 @@ export default {
   methods: {
     ...mapActions("skills", ["removeSkill", "editSkill"]),
     async removeExistedSkill(){
-      try {
-        await this.removeSkill(this.skill);
-      } catch (error){
-        
-      } 
+      const areYouSure = window.confirm("Удалить запись?"); 
+      if (areYouSure === true){
+        try {
+          await this.removeSkill(this.skill);
+        } catch (error){
+
+        }
+      }   
     },
     async editExistedSkill(){
         try {
