@@ -6,13 +6,16 @@ section.reviews
             li.snippets-item
                 button(type="button").add-snippet-btn
                     .add-snippet-btn__text Добавить работу
-            li.snippets-item.reviews-snippet
-              review-snippet
+            li.snippets-item.reviews-snippet(v-for="review in reviews")
+                review-snippet(
+                    :review="review"
+                )
 </template>
 
 <script>
 import {
-  mapState
+  mapState,
+  mapActions
 } from "vuex";
 
 export default {
@@ -24,6 +27,12 @@ export default {
     ...mapState("reviews", {
       reviews: state => state.reviews
     })
+  },
+  created() {
+    this.fetchReviews();
+  },
+  methods: {
+    ...mapActions('reviews', ['fetchReviews'])
   },
 }
 </script>

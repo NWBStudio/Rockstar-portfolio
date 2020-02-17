@@ -46,6 +46,9 @@ export default {
       this.addReview(this.review);
     },
     handleFile(e) {
+      /** Получаем через нативное событие файл,
+      который прилетает в виде массива с одним 
+      элементом */
       const file = e.target.files[0];
       this.review.photo = file;
       this.renderImageFile(file);
@@ -54,14 +57,20 @@ export default {
       const reader = new FileReader();
 
       try {
+        /** Считываем данные и файла в виде
+         * base64-кодированного URL */
         reader.readAsDataURL(file);
+
+        /** По завершению чтения файла, кладём
+         *  его результат в data */
         reader.onloadend = () => {
           this.renderedPhoto = reader.result;
         }
       }
       catch (error) {
         /** Переделать в вывод на тултип */
-        throw new Error("Ошибка при чтении файла"); 
+        alert(error);
+        throw new Error("Ошибка при чтении файла");
       }
     }
   }

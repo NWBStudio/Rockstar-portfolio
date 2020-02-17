@@ -6,7 +6,7 @@ export default {
   mutations: {
     SET_REVIEWS: (state, data) => {
       const updatedState = state;
-      updatedState.categories = data;
+      updatedState.reviews = data;
       return updatedState;
     },
     ADD_REVIEW: (state, review) => {
@@ -47,14 +47,26 @@ export default {
         }
       },
       async addReview({ commit }, review) {
+
+        /** Создаём объект formData, 
+         * в который будет упакованны 
+         * данные из объекта review */
         const formData = new FormData();
+
+        /** Получаем массив названий свойств
+         * объекта review, перебираем его */
         Object.keys(review).forEach(key => {
+
+          /** Обращаемся к значению 
+           * свойства по названию свойства */
           const value = review[key];
+
+          /** Добавляем получившийся элемент
+           * в объект formData */
           formData.append(key, value);
         });
 
         const response = await this.$axios.post('/reviews', formData);
-        console.log(response);
       },
       async addCategory({ commit }, title) { // title требует API
         try {

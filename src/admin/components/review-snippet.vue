@@ -1,12 +1,12 @@
 <template lang="pug">
-    .reviews-snippet__content
+.reviews-snippet__content
         .reviews-snippet__header.edit-form-header
             .reviews-snippet__avatar
-                img(src="../../images/content/reviewsDmitry.jpg", alt="Фотография автора отзыва").avatar
+                img(:src="`https://webdev-api.loftschool.com/${review.photo}`", alt="Фотография автора отзыва").avatar
             .reviews-snippet__author-name  
-                h3.edit-form-title.reviews-snippet__name Имя Фамилия
-                span.reviews-snippet__role Программист
-        p.reviews-snippet__text Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, sit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, magni.
+                h3.edit-form-title.reviews-snippet__name {{review.author}}
+                span.reviews-snippet__role {{review.occ}}
+        p.reviews-snippet__text {{review.text}}
         .reviews-snippet__controls.snippet-controls
             button(type="button").snippet-button
                 span.snippet-button__text Править
@@ -17,11 +17,20 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import {
+  mapActions
+} from "vuex";
 
 export default {
-  methods: {
-    ...mapActions("reviews", ["fetchReviews"])
-  }
+    props: {
+      review: {
+          type: Object,
+          default: () => {},
+          required: true
+      }  
+    },
+    methods: {
+      ...mapActions("reviews", ["fetchReviews"])
+    }
 }
 </script>
