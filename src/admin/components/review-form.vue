@@ -1,18 +1,18 @@
 <template lang="pug">
-form.reviews-form.edit-form(@submit.prevent="sendForm")
-    .reviews-form__header.edit-form-header
+form.review-form.edit-form(@submit.prevent="sendForm")
+    .review-form__header.edit-form-header
         h3(v-if="formType === 'add'").edit-form-title Новый отзыв
         h3(v-if="formType === 'edit'").edit-form-title Изменить отзыв
     .reviwes-form__add-img
-        label.reviews-form__file-input-label(:class="{ 'reviews-form__file-input-label--droppable': droppable }" @drop.prevent="handleFileDrop" @dragover.prevent="droppable = true" @dragleave.prevent="droppable = false")
-            .reviews-form__img-containter(
-                :class="{'reviews-form__img-containter--filled': renderedPhoto.length}"
+        label.review-form__file-input-label(:class="{ 'review-form__file-input-label--droppable': droppable }" @drop.prevent="handleFileDrop" @dragover.prevent="droppable = true" @dragleave.prevent="droppable = false")
+            .review-form__img-containter(
+                :class="{'review-form__img-containter--filled': renderedPhoto.length}"
                 :style="{backgroundImage: `url(${renderedPhoto})`}"
                 )
-            input(@change="handleFileInput" type="file" ref="fileInput").reviews-form__file-input
-            .reviews-form__file-input-btn.text-btn-or-link Добавить фото
-    .reviews-form__fields
-        .reviews-form__row
+            input(@change="handleFileInput" type="file" ref="fileInput").review-form__file-input
+            .review-form__file-input-btn.text-btn-or-link Добавить фото
+    .review-form__fields
+        .review-form__row
             label.form-label.reviews__form-label
                 .form-label__title Имя автора 
                 input(v-if="formType === 'add'" v-model="review.author" type="text" required name="name").admin-input.form-label__input
@@ -21,12 +21,12 @@ form.reviews-form.edit-form(@submit.prevent="sendForm")
                 .form-label__title Титул автора
                 input(v-if="formType === 'add'" v-model="review.occ" required name="occ").admin-input.form-label__input
                 input(v-if="formType === 'edit'" v-model="editedReview.occ" required name="occ").admin-input.form-label__input
-        .reviews-form__row      
+        .review-form__row      
             label.form-label 
                 .form-label__title Отзыв
                 textarea(v-if="formType === 'add'" v-model="review.text" type="text" required).admin-textarea.form-label__input
                 textarea(v-if="formType === 'edit'" v-model="editedReview.text" type="text" required).admin-textarea.form-label__input
-        .reviews-form__controls.form-controls()
+        .review-form__controls.form-controls()
             button(type="button" :disabled = "isSending" @click="$emit('hideForm')").text-btn-or-link Отмена
             button(type="submit" :disabled = "isSending").filled-btn Загрузить
 </template>
@@ -175,9 +175,75 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+
 @import "../../styles/misc/variables.pcss";
 
-.reviews-form__file-input-label {
+.review-form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.review-form__header {
+  margin-bottom: 50px;
+}
+
+.reviwes-form__add-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 35px;
+}
+
+.review-form__img-containter {
+  width: 200px;
+  height: 200px;
+  background: $gray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  &:before {
+    content: "";
+    width: 115px;
+    height: 115px;
+    background: svg-load("user.svg", fill=$white, width=100%, height=100%); //разобраться с полной заливкой
+  }
+}
+
+.review-form__img-containter--filled {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &:before {
+    display: none;
+  }
+}
+
+.review-form__fields {
+  flex: 1;
+  margin-right: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-form__row {
+  display: flex;
+}
+
+.reviews__form-label {
+  margin-left: 10%;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.review-form__file-input-label {
   cursor: pointer;
 
   &:hover {
@@ -193,17 +259,19 @@ export default {
   }
 }
 
-.reviews-form__file-input-label--droppable {
-  .reviews-form__img-containter {
+.review-form__file-input-label--droppable {
+  .review-form__img-containter {
     border: 2px dashed $font-dark-purple;
   }
 }
 
-.reviews-form__file-input {
+.review-form__file-input {
   display: none;
 }
 
-.reviews-form__file-input-btn {
+.review-form__file-input-btn {
   text-align: center;
 }
 </style>
+
+

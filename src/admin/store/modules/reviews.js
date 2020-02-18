@@ -72,19 +72,6 @@ export default {
         }
         
       },
-      async addCategory({ commit }, title) { // title требует API
-        try {
-
-          const { data } = await this.$axios.post("/categories", { title });
-          commit("ADD_CATEGORY", data);
-
-        } catch (error) { // error возвращает axios/async в случае ошибки
-          throw new Error(
-            error.response.data.error || error.response.data.message
-          );
-        }
-
-      },
       async editReview({ commit }, editedReview) {
         const formData = new FormData();
         Object.keys(editedReview).forEach(key => {

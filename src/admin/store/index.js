@@ -4,6 +4,7 @@ import categories from "./modules/categories";
 import skills from "./modules/skills";
 import user from "./modules/user";
 import reviews from "./modules/reviews";
+import works from "./modules/reviews";
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     categories,
     skills,
     user,
-    reviews
+    reviews,
+    works
   }
 });

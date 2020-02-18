@@ -1,28 +1,7 @@
 <template lang="pug">
 section.works
-    .container.works__inner
-        form.works-form.edit-form
-            .works-form__header.edit-form-header
-                h3.edit-form-title Добавление работы
-            .works-form__img-container
-                .works-form__img-tutorial Перетащите либо загрузите изображения
-                button(type="file").works-form__img-btn.filled-btn Загрузить
-            .works-form__fields
-                label.form-label
-                    .form-label__title Название 
-                    input(type="text" required name="name").admin-input.form-label__input
-                label.form-label 
-                    .form-label__title Ссылка
-                    input(type="text" required).admin-input.form-label__input
-                label.form-label 
-                    .form-label__title Описание
-                    textarea(type="text" required).admin-textarea.form-label__input
-                label.form-label 
-                    .form-label__title Добавление тега
-                    input(type="text" required).admin-input.form-label__input
-                .works-form__controls.form-controls
-                    button(type="reset").text-btn-or-link Отмена
-                    button(type="submit").filled-btn Загрузить
+    .container
+        work-form
         ul.works__snippets.snippets                                                                                
             li.snippets-item
                 button(type="button").add-snippet-btn
@@ -47,22 +26,30 @@ section.works
                             .iconed-btn.iconed-btn--type--cross
 </template>
 
-<style lang="postcss" scoped>
+<script>
+export default {
+  components: {
+    workForm: () => import("../work-form")
+  }
+}
+</script>
+
+<style lang="postcss">
 @import "../../../styles/misc/variables.pcss";
 @import "../../../styles/misc/mixins.pcss";
 
-.works-form {
+.work-form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 40px;
 }
 
-.works-form__header {
+.work-form__header {
   margin-bottom: 50px;
 }
 
-.works-form__img-container {
+.work-form__img-container {
   width: 495px;
   height: 275px;
   background: $blueish-gray;
@@ -71,9 +58,10 @@ section.works
   justify-content: center;
   align-items: center;
   margin-right: 5%;
+  position: relative;
 }
 
-.works-form__img-tutorial {
+.work-form__img-tutorial {
   line-height: 34px;
   color: $dark-grayish-blue;
   font-weight: $semibold;
@@ -83,7 +71,7 @@ section.works
   text-align: center;
 }
 
-.works-form__fields {
+.work-form__fields {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
