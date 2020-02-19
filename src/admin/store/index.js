@@ -4,7 +4,7 @@ import categories from "./modules/categories";
 import skills from "./modules/skills";
 import user from "./modules/user";
 import reviews from "./modules/reviews";
-import works from "./modules/reviews";
+import works from "./modules/works";
 
 Vue.use(Vuex);
 

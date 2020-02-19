@@ -26,7 +26,7 @@
     {
         "id": 4,
         "title": "Сайт школы образования 4",
-        "skills": ["React", "Docker", "Kubernets"],
+        "skills": ["React", "Docker", "Kubernetes"],
         "img": "preview4.jpg",
         "link": "//duckduckgo.com/",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur atque repellendus distinctio soluta eos alias perspiciatis repellat consequuntur nobis harum."

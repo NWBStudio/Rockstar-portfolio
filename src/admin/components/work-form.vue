@@ -1,7 +1,8 @@
 <template lang="pug">
-form.work-form.edit-form
+form.work-form.edit-form(@submit.prevent="sendForm")
     .work-form__header.edit-form-header
-        h3.edit-form-title Добавление работы
+        h3(v-if="formType === 'add'").edit-form-title Добавление работы 
+        h3(v-if="formType === 'edit'").edit-form-title Изменение работы
     .work-form__img-container(
         :class="{ 'work-form__img-container--droppable': droppable, 'work-form__img-container--filled': renderedPhoto.length }"
         :style="{backgroundImage: `url(${renderedPhoto})`}" 
@@ -17,23 +18,44 @@ form.work-form.edit-form
     .work-form__fields
         label.form-label
             .form-label__title Название 
-            input(type="text" required name="name").admin-input.form-label__input
+            input(v-if="formType === 'add'" v-model="work.title" type="text" required name="name").admin-input.form-label__input
+            input(v-if="formType === 'edit'" v-model="editedWork.title" type="text" required name="name").admin-input.form-label__input
         label.form-label 
             .form-label__title Ссылка
-            input(type="text" required).admin-input.form-label__input
+            input(v-if="formType === 'add'" v-model="work.link" type="text" required).admin-input.form-label__input
+            input(v-if="formType === 'edit'" v-model="editedWork.link" type="text" required).admin-input.form-label__input
         label.form-label 
             .form-label__title Описание
-            textarea(type="text" required).admin-textarea.form-label__input
-        label.form-label 
+            textarea(v-if="formType === 'add'" v-model="work.description" type="text" required).admin-textarea.form-label__input
+            textarea(v-if="formType === 'edit'" v-model="editedWork.description" type="text" required).admin-textarea.form-label__input
+        label.form-label.work-form__tags-input
             .form-label__title Добавление тега
-            input(type="text" required).admin-input.form-label__input
+            input(v-if="formType === 'add'" v-model="work.techs" type="text" required).admin-input.form-label__input
+            input(v-if="formType === 'edit'" v-model="editedWork.techs" type="text" required).admin-input.form-label__input
+        ul.tags
+            li.tags__item.work-tag(v-for="tag, index in tags") {{ tag }}
+              button(type="button" @click="removeTag(index)").work-form__remove-tag-btn
         .work-form__controls.form-controls
-            button(type="reset").text-btn-or-link Отмена
+            button(type="button" @click="$emit('hideForm')").text-btn-or-link Отмена
             button(type="submit").filled-btn Загрузить
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
+  props: {
+    formType: {
+      type: String,
+      default: "add",
+      required: true
+    },
+    editedWork: {
+      type: Object,
+      default: () => {},
+      required: true
+    }
+  },
   data() {
     return {
       renderedPhoto: "",
@@ -48,7 +70,75 @@ export default {
       droppable: false
     }
   },
+  computed: {
+    tags() {
+      let result;
+      if (this.formType === 'add' && this.work.techs.length) {
+        result = this.work.techs.split(", ");
+      }
+      if (this.formType === 'edit'){ 
+        result = this.editedWork.techs.split(", ");
+      }
+      console.log(result);
+      return result;
+    }
+  },
+  mounted() {
+    if (this.formType === 'edit') {
+      this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedWork.photo}`;
+    }
+  },
+  // beforeUpdate () {
+  //   if (this.formType === 'add'){
+  //     this.renderedPhoto = "";
+  //   }
+  // },
+  updated() {
+    if (this.formType === 'edit') {
+      this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedWork.photo}`;
+    }
+  },
   methods: {
+    ...mapActions("works", ["addWork", "editWork"]),
+    async addNewWork(){
+      try {
+        this.isSending = true;
+        await this.addWork(this.work);
+        this.$emit('hideForm');
+        this.clearInputs();
+      } catch (error) {
+        
+      } finally {
+        this.isSending = false;
+      }
+    },
+    async editExistedWork() {
+      try {
+        this.isSending = true;
+        await this.editWork(this.editedWork);
+        this.$emit('hideForm');
+        this.clearInputs();
+
+      } catch (error) {
+
+      } finally {
+        this.isSending = false;
+      }
+    },
+    removeTag(indexOfDeleted) {
+      this.tags.filter(
+        function (tag, index) {
+        if(index !== indexOfDeleted){
+          console.log(tag);
+        }
+      }
+        
+      );
+    },
+    sendForm() {
+      if (this.formType === 'add') this.addNewWork();
+      if (this.formType === 'edit') this.editExistedWork();
+    },
     handleFileDrop(e) {
       this.droppable = false;
       if (e.dataTransfer.files.length === 1) {
@@ -68,15 +158,16 @@ export default {
         if (file.size / 1048576 < 1.5) {
           this.handleFile(file);
         } else {
-          alert("Нельзя загру;жать файлы размером больше 1.5Mb")
+          alert("Нельзя загружать файлы размером больше 1.5Mb")
         }
       } else {
         alert("Принимаются только изображения в форматах jpg и png");
       }
     },
     handleFile(file) {
-      if (this.formType === 'add') this.review.photo = file;
-      if (this.formType === 'edit') this.editedReview.photo = file;
+      this.work.photo = file;
+      if (this.formType === 'add') this.work.photo = file;
+      if (this.formType === 'edit') this.editedWork.photo = file;
       this.renderImageFile(file);
     },
     renderImageFile(file) {
@@ -139,4 +230,30 @@ export default {
       display: block;
     }
   }
+
+  .work-form__tags-input {
+    margin-bottom: 20px;
+  }
+
+  .work-tag {
+    position: relative;
+  }
+
+  .work-form__remove-tag-btn {
+    width: 7px;
+    height: 7px;
+    background: svg-load(
+      "cross.svg",
+      fill=$font-dark-purple,
+      width=100%,
+      height=100%
+    );
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 18%;
+    right: 7%;
+    z-index: 10;
+  }
+
+
 </style>

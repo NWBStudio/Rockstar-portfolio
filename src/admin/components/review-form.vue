@@ -4,7 +4,12 @@ form.review-form.edit-form(@submit.prevent="sendForm")
         h3(v-if="formType === 'add'").edit-form-title Новый отзыв
         h3(v-if="formType === 'edit'").edit-form-title Изменить отзыв
     .reviwes-form__add-img
-        label.review-form__file-input-label(:class="{ 'review-form__file-input-label--droppable': droppable }" @drop.prevent="handleFileDrop" @dragover.prevent="droppable = true" @dragleave.prevent="droppable = false")
+        label.review-form__file-input-label(
+          :class="{ 'review-form__file-input-label--droppable': droppable }" 
+          @drop.prevent="handleFileDrop" 
+          @dragover.prevent="droppable = true" 
+          @dragleave.prevent="droppable = false"
+          )
             .review-form__img-containter(
                 :class="{'review-form__img-containter--filled': renderedPhoto.length}"
                 :style="{backgroundImage: `url(${renderedPhoto})`}"
@@ -137,7 +142,7 @@ export default {
         if (file.size / 1048576 < 1.5) {
           this.handleFile(file);
         } else {
-          alert("Нельзя загру;жать файлы размером больше 1.5Mb")
+          alert("Нельзя загружать файлы размером больше 1.5Mb")
         }
       } else {
         alert("Принимаются только изображения в форматах jpg и png");

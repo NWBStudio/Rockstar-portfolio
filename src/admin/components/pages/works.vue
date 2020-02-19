@@ -1,36 +1,65 @@
 <template lang="pug">
 section.works
     .container
-        work-form
+        work-form(
+          v-if="workFormIsActive"
+          :formType="formType"
+          @hideForm="workFormIsActive = false"
+          :editedWork="editedWork"
+        )
         ul.works__snippets.snippets                                                                                
             li.snippets-item
-                button(type="button").add-snippet-btn
+                button(type="button" @click="openAddForm").add-snippet-btn
                     .add-snippet-btn__text Добавить работу
 
-            li.snippets-item.works-snippet
-                .works-snippet__img-container
-                    img(src="../../../images/content/preview1.jpg", alt="Превью работы").works-snippet__img
-                    ul.tags.works-snippet__tags
-                        each tag in ["Html", "CSS", "Javascript"]
-                            li.tags__item=tag
-                .works-snippet__info
-                    h3.works-snippet__title Новая работа 
-                    p.works-snippet__desc Описание этой работы 
-                    a(href="//google.com").works-snippet__link.text-btn-or-link http://google.com
-                    .works-snippet__controls.snippet-controls
-                        button(type="button").snippet-button
-                            span.snippet-button__text Править
-                            .iconed-btn.iconed-btn--type--purple-pencil
-                        button(type="button").snippet-button
-                            span.snippet-button__text Удалить
-                            .iconed-btn.iconed-btn--type--cross
+            li.snippets-item.works-snippet(v-for="work in works")
+                workSnippet(
+                  :work="work"
+                  @openEditForm="openEditForm"
+                )
 </template>
 
 <script>
+
+import { 
+  mapState,
+  mapActions 
+} from 'vuex';
+
 export default {
   components: {
-    workForm: () => import("../work-form")
-  }
+    workForm: () => import("../work-form"),
+    workSnippet: () => import("../work-snippet")
+  },
+  data () {
+    return {
+      formType: "",
+      workFormIsActive: false,
+      editedWork: {}
+    }
+  },
+  computed: {
+    ...mapState("works", {
+      works: state => state.works
+    })
+  },
+  created () {
+    this.fetchWorks();
+  },
+  methods: {
+    ...mapActions('works', ['fetchWorks']),
+    openAddForm(){
+      this.workFormIsActive=true;
+      this.formType='add';
+    },
+    openEditForm(work){
+      this.editedWork = "";
+      this.editedWork = {...work};
+      this.formType = 'edit';
+      this.workFormIsActive = true;
+    }
+  },
+  
 }
 </script>
 
@@ -83,10 +112,15 @@ export default {
 
 .works-snippet__info {
   padding: 35px 30px 40px 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
 }
 
 .works-snippet__img-container {
   position: relative;
+  min-height: 200px;
 }
 
 .works-snippet__tags {
@@ -113,5 +147,9 @@ export default {
 .works-snippet__link {
   display: inline-block;
   margin-bottom: 25px;
+}
+
+.works-snippet__controls {
+  margin-top: auto;
 }
 </style>
