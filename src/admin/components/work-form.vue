@@ -71,16 +71,26 @@ export default {
     }
   },
   computed: {
-    tags() {
-      let result;
-      if (this.formType === 'add' && this.work.techs.length) {
-        result = this.work.techs.split(", ");
+    tags: {
+      get(){
+        let result;
+        if (this.formType === 'add' && this.work.techs.length) {
+          result = this.work.techs.split(", ");
+        }
+        if (this.formType === 'edit'){ 
+          result = this.editedWork.techs.split(", ");
+        }
+        return result;
+      },
+      set(newTags){
+        if (this.formType === 'add' && this.work.techs.length) {
+           this.work.techs = newTags.join(", ");
+        }
+        if (this.formType === 'edit'){ 
+          this.editedWork.techs = newTags.join(", ");
+        }
       }
-      if (this.formType === 'edit'){ 
-        result = this.editedWork.techs.split(", ");
-      }
-      console.log(result);
-      return result;
+        
     }
   },
   mounted() {
@@ -126,13 +136,8 @@ export default {
       }
     },
     removeTag(indexOfDeleted) {
-      this.tags.filter(
-        function (tag, index) {
-        if(index !== indexOfDeleted){
-          console.log(tag);
-        }
-      }
-        
+      this.tags = this.tags.filter(
+        (tag, index) => index !== indexOfDeleted
       );
     },
     sendForm() {

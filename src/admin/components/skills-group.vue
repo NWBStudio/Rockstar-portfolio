@@ -54,7 +54,7 @@ export default {
          * каждом вызове метода addNewSkill */
         title: "",
         percent: "", // не поставил 0 чтобы нормально работал плейсхолдер
-        category: this.category.id
+        category: this.category.id 
       },
       loading: false,
       editmode: false,
