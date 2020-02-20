@@ -93,23 +93,41 @@ export default {
         
     }
   },
-  mounted() {
-    if (this.formType === 'edit') {
-      this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedWork.photo}`;
-    }
+  watch: {
+    formType: {
+      handler() {
+        if(this.formType === 'edit'){
+          this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedWork.photo}`;
+        } else {
+          this.clearInputs();
+        }
+      },
+      immediate: true,
+      }
   },
-  // beforeUpdate () {
-  //   if (this.formType === 'add'){
-  //     this.renderedPhoto = "";
-  //   }
-  // },
+  mounted () {
+    this.clearFileInput();
+  },
   updated() {
     if (this.formType === 'edit') {
       this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedWork.photo}`;
+      this.clearFileInput();
     }
   },
   methods: {
     ...mapActions("works", ["addWork", "editWork"]),
+    clearInputs() {
+      this.renderedPhoto = "";
+      Object.keys(this.work).forEach(key => {
+        this.work[key] = "";
+      });
+      Object.keys(this.editedWork).forEach(key => {
+        this.editedWork[key] = "";
+      });
+    },
+    clearFileInput(){
+      this.$refs.fileInput.value = '';
+    },
     async addNewWork(){
       try {
         this.isSending = true;

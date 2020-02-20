@@ -67,32 +67,52 @@ export default {
       droppable: false
     }
   },
-  mounted() {
-    if (this.formType === 'edit') {
-      this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedReview.photo}`;
-    }
+  watch: {
+    /** Слежка за изменением типа формы */
+    formType: {
+      handler() {
+        /** Переключение фотки если переход с пустой на редактирование */
+        if(this.formType === 'edit'){
+          this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedReview.photo}`;
+        } else {
+          /** Очистка полей для новой формы */
+          this.clearInputs();
+        }
+      },
+      /** Указывает что коллбэк (handler) выполнится сразу же 
+       * после начала наблюдения, т.е. при создании компонента,
+       * а потом будет работать как обычный вотчер на измнение */
+      immediate: true,
+      }
   },
-  // beforeUpdate () {
-  //   if (this.formType === 'add'){
-  //     this.renderedPhoto = "";
-  //   }
-  // },
+  /** Потому что обращение к инпуту происходит
+   * через $refs, список который формируется
+   * только когда компонент уже отрисован */
+  mounted () {
+    this.clearFileInput();
+  },
   updated() {
     if (this.formType === 'edit') {
+      /** Обновляет фотку в контейнере на случай
+       *  переключения между редактированием разных отзывов */
       this.renderedPhoto = `https://webdev-api.loftschool.com/${this.editedReview.photo}`;
+      this.clearFileInput();
+ 
     }
   },
   methods: {
     ...mapActions("reviews", ["addReview", "editReview"]),
     clearInputs() {
       this.renderedPhoto = "";
-      this.$refs.fileInput.value = '';
       Object.keys(this.review).forEach(key => {
         this.review[key] = "";
       });
       Object.keys(this.editedReview).forEach(key => {
         this.editedReview[key] = "";
       });
+    },
+    clearFileInput(){
+      this.$refs.fileInput.value = '';
     },
     async addNewReview() {
       try {
@@ -175,7 +195,8 @@ export default {
         throw new Error("Ошибка при чтении файла");
       }
     }
-  }
+  },
+  
 }
 </script>
 
