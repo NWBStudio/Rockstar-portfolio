@@ -37,14 +37,24 @@ export default {
         },
         ADD_SKILL: (state, newSkill) => {
             const updatedState = state;
-            updatedState.categories = state.categories.map(category => { // берём массив с категориями
+           
+            
+            updatedState.categories.forEach(category => { // берём массив с категориями
+                const currentCategory = category;
                 /** В нём ищем категорию по id, который 
                  * прилетает вместе со скиллом */
-                if(category.id === newSkill.category){  
-                    category.skills.push(newSkill); // добавляем скилл в массив скиллов
+                if(currentCategory .id === newSkill.category){ 
+                    if(Object.prototype.hasOwnProperty.call(currentCategory , "skills")){
+                        currentCategory .skills.push(newSkill);
+                    } else {
+                        /** */ 
+                        currentCategory.skills = [newSkill];
+                    }
+                    // 
+                    // добавляем скилл в массив скиллов
                 }
-                return category; // возвращаем категорию с новым скиллом
-            })
+            });
+            return updatedState;
         },
         REMOVE_SKILL: (state, deletedSkill) => {
             const updatedState = state;

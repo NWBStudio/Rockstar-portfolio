@@ -11,7 +11,6 @@
             button(type="button" @click="editExistedCategory").iconed-btn.iconed-btn--type--tick.about-form__submit-btn
             button(type="button" @click="editmode = false").iconed-btn.iconed-btn--type--cross.about-form__cancel-btn    
     .about-form__middle-row
-        - var skills = [["Webpack", "100"],["Git", "70"],["Vue", "100"],["Terminal", "50"]]
             table.skills-table
                 //- атрибут :key является уникальным для каждого отрисованного элемента
                 //- и помогает отслеживать их идентичность
@@ -54,7 +53,7 @@ export default {
          * каждом вызове метода addNewSkill */
         title: "",
         percent: "", // не поставил 0 чтобы нормально работал плейсхолдер
-        category: this.category.id 
+        category: ""
       },
       loading: false,
       editmode: false,
@@ -62,14 +61,16 @@ export default {
         ...this.category
       }
     }
-  },
+  }, 
+  
+  
   methods: {
     ...mapActions("skills", ["addSkill"]),
     ...mapActions("categories", ["editCategory", "removeCategory"]),
     async addNewSkill() {
       try {
         this.loading = true;
-        await this.addSkill(this.skill);
+        await this.addSkill({...this.skill, category: this.category.id});
         this.skill.title = "";
         this.skill.percent = "";
       } catch (error) {
