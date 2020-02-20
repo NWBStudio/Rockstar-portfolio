@@ -2,42 +2,20 @@ section.contacts
     .container.contacts__inner
         h2.section-title.contacts__title Связаться со мной
         form.form.contacts__form
-            -
-              var fields = [
-                  {     
-                        tag: "input",    
-                        title: "Введите ваше имя",
-                        type: "text",
-                        name: "name",
-                        placeholder: "Ковальчук Дмитрий",
-                        icon: "user",
-                        addClass: ""
-                  },{
-                        tag: "input", 
-                        title: "Введите ваш email",
-                        type: "email",
-                        name: "email",
-                        placeholder: "loftschool@study.com",
-                        icon: "envelope",
-                        addClass: ""
-                  },{
-                        tag: "textarea", 
-                        title: "Сообщение к письму",
-                        type: "text",
-                        name: "message",
-                        placeholder: "Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса",
-                        icon: "message",
-                        addClass: "form__textarea"
-                  }
-              ]  
-            each item in fields  
-                label.form__label
-                    .form__label-title #{item.title}
-                    .form__input-line
-                        if item.tag == "textarea"
-                            +icon(item.icon, "form__label-icon form__label-icon--textarea")
-                        else 
-                            +icon(item.icon, "form__label-icon")   
-                        #{item.tag}(required type= item.type class="form__input" + " "+ item.addClass name= item.name placeholder= item.placeholder) 
+            label.form__label
+                .form__label-title Введите ваше имя
+                .form__input-line
+                    +icon("user", "form__label-icon")
+                    input.form__input(required="" type="text" name="name" placeholder="Ковальчук Дмитрий")            
+            label.form__label
+                .form__label-title Введите ваш email
+                .form__input-line
+                    +icon("envelope", "form__label-icon")
+                    input.form__input(required="" type="email" name="email" placeholder="example@example.com")
+            label.form__label
+                .form__label-title Сообщение к письму
+                .form__input-line
+                    +icon("message", "form__label-icon form__label-icon--textarea")
+                    textarea.form__input.form__textarea(required="" type="text" name="message" placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса")
             button.button.form__submit-btn.contacts__form-submit(type= "submit") отправить          
 
