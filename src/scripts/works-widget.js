@@ -1,10 +1,17 @@
 import Vue from "vue";
+import axios from "axios";
+
+const $axios = axios.create({
+    /** создаём новый экземпляр с определёнными
+     * настройками в виде объекта  */ 
+    baseURL: "https://webdev-api.loftschool.com/",
+});
 
 const previews = {
     template: "#slider-previews",
     props: ["works", "currentWork", "currentIndex", "hdScreen"],
     methods:{
-        displayThreeOnDesktop(ndx){ // костыль для адаптива - уменьшает количество отображаемых превьюх с 4 до 3
+        displayThreeOnDesktop(ndx){ // костыль для адаптива - уменьшает количество отображаемых превьюх до 3
             let pass = false;
             if (this.hdScreen) {
                 pass = true;
@@ -73,9 +80,9 @@ const worksWidget = new Vue({
             this.makeInfiniteLoopForCurIndex(value);
         }
     },
-    created() {
-        const data = require("../data/works-widget.json");
-        this.works = this.makeArrWithRequiredImages(data); // наполнение массива данными из json файла с готовыми путями для картинок
+    async created() {
+        const { data } = await $axios.get("/works/260");
+        this.works = this.makeArrWithCorrectPathsAndTags(data); // наполнение массива данными из json файла с готовыми путями для картинок
         this.onResize(); // определение ширины экрана при загрузке страницы
         window.addEventListener('resize', this.onResize) // дальнейшее слежение за изменением ширины экрана
     },
@@ -88,11 +95,12 @@ const worksWidget = new Vue({
             if (value > lastWorkIndex) this.currentIndex = 0;
             else if (value < 0) this.currentIndex = lastWorkIndex;
         },
-        makeArrWithRequiredImages(data) {
+        makeArrWithCorrectPathsAndTags(data) {
             return data.map(item => {
-                const requiredPic = require(`../images/content/${item.img}`);
+                const picPath = `https://webdev-api.loftschool.com/${item.photo}`;
                 const updatedItem = item;
-                updatedItem.img = requiredPic;
+                updatedItem.techs = updatedItem.techs.split(", ");
+                updatedItem.img = picPath;
 
                 return updatedItem;
             });

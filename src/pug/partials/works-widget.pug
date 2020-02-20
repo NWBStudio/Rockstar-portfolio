@@ -51,11 +51,11 @@ script(type="text/x-template")#slider-buttons
 script(type="text/x-template")#widget-info      
     .works-widget__info
         tags(
-            :tagsArray= "currentWork.skills"
+            :tagsArray= "currentWork.techs"
         )
         h3.works-widget__title {{currentWork.title}}
         .works-widget__desc
-            p {{currentWork.desc}}
+            p {{currentWork.description}}
         a.iconed-link(:href="currentWork.link")
             +icon('link', 'iconed-link__icon')
             span.iconed-link__text Посмотреть сайт 

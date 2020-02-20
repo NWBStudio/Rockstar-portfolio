@@ -1,5 +1,12 @@
 import Vue from "vue";
 import Flickity from 'vue-flickity';
+import axios from "axios";
+
+const $axios = axios.create({
+    /** создаём новый экземпляр с определёнными
+     * настройками в виде объекта  */ 
+    baseURL: "https://webdev-api.loftschool.com/",
+});
 
 const reviewsSliderApp = new Vue ({
     el: '#reviews',
@@ -21,9 +28,12 @@ const reviewsSliderApp = new Vue ({
             reviews: []
         }
     },
-    created(){
-        const data = require("../data/reviews.json");
+    async created(){
+        const { data } = await $axios.get("/reviews/260");
         this.reviews = this.imagesFilePaths(data);
+        /** Пересборка и перерисовка слайдера после получения
+         * данных с сервера */
+        this.$nextTick(() =>  this.$refs.flickity.rerender());
     },
     methods: {
         next() {
@@ -53,7 +63,7 @@ const reviewsSliderApp = new Vue ({
         imagesFilePaths(data){
             return data.map(item => {
                 
-                const requirePic = require(`../images/content/reviews${item.avatar}.jpg`);
+                const requirePic = `https://webdev-api.loftschool.com/${item.photo}`;
                 const updatedItem = item;
 
                 updatedItem.avatar = requirePic;

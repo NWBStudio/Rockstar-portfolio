@@ -11,5 +11,5 @@ section.reviews#reviews
                     +icon('quote', 'review__icon')
                     p.review__text  {{review.text}}
                     image.review__avatar(:src="review.avatar")
-                    .review__name {{review.name}}
-                    .review__role {{review.role}}
+                    .review__name {{review.author}}
+                    .review__role {{review.occ}}
