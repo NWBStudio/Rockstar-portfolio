@@ -135,7 +135,7 @@ export default {
         this.$emit('hideForm');
         this.clearInputs();
       } catch (error) {
-        
+        this.$emit('errorEvent', error);
       } finally {
         this.isSending = false;
       }
@@ -148,7 +148,7 @@ export default {
         this.clearInputs();
 
       } catch (error) {
-
+        this.$emit('errorEvent', error);
       } finally {
         this.isSending = false;
       }
@@ -203,9 +203,7 @@ export default {
           this.renderedPhoto = reader.result;
         }
       } catch (error) {
-        /** Переделать в вывод на тултип */
-        alert(error);
-        throw new Error("Ошибка при чтении файла");
+        this.$emit('errorEvent', "Ошибка при чтении файла");
       }
     }
   }

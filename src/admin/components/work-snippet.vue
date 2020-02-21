@@ -42,7 +42,7 @@ export default {
             try {
               await this.removeWork(this.work);
             } catch (error) {
-              
+              this.$emit('errorEvent', error);
             }
         }
     }

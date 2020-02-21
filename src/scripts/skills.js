@@ -50,7 +50,6 @@ const drawSkillsWidget = new Vue({
     async created() {
         const { data } = await $axios.get("/categories/260");
         this.categories = data; 
-        console.log(this.categories);
     },
     template: "#skills-group"
     

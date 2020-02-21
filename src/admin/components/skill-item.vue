@@ -49,7 +49,7 @@ export default {
         try {
           await this.removeSkill(this.skill);
         } catch (error){
-
+          this.$emit('errorEvent', error);
         }
       }   
     },
@@ -58,7 +58,7 @@ export default {
           await this.editSkill(this.editedSkill);
           this.editmode = false;
         } catch (error) {
-          
+          this.$emit('errorEvent', error);
         }
       }
   }

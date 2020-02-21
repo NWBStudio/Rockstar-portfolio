@@ -118,7 +118,7 @@ const worksWidget = new Vue({
             }
         },
         switchPreview(id){
-            this.currentIndex = id - 1;
+            this.currentIndex = id;
         },
         onResize() {
             if (window.innerWidth <= 1200) { // как минимум поменять на взятие значений из variables.json

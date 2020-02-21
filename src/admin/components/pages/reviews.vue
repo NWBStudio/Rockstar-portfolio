@@ -6,6 +6,7 @@ section.reviews
           :formType="formType"
           @hideForm="reviewFormIsActive = false"
           :editedReview="editedReview"
+          @errorEvent="handleErrorFromChild"
         )
         ul.reviews__snippets.snippets                                                                                
             li.snippets-item
@@ -16,6 +17,10 @@ section.reviews
                     :review="review"
                     @openEditForm="openEditForm"
                 )
+    error-tooltip(
+          :errorText="errorText"
+          @errorEvent="handleErrorFromChild"
+        )
 </template>
 
 <script>
@@ -27,13 +32,15 @@ import {
 export default {
   components: {
     reviewForm: () => import("../review-form"),
-    reviewSnippet: () => import("../review-snippet")
+    reviewSnippet: () => import("../review-snippet"),
+    errorTooltip: () => import("../error-tooltip")
   },
   data () {
     return {
       reviewFormIsActive: false,
       formType: "",
-      editedReview: {}  
+      editedReview: {},
+      errorText:""  
     }
   },
   computed: {
@@ -55,8 +62,12 @@ export default {
       this.editedReview = {...review};
       this.formType = 'edit';
       this.reviewFormIsActive = true;
-    }
+    },
+    handleErrorFromChild(error){
+    this.errorText = error;
+  }
   },
+  
 }
 </script>
 

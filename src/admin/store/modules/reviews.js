@@ -42,7 +42,7 @@ export default {
           commit("SET_REVIEWS", data);
 
         } catch (error) {
-
+          throw new Error(error);
         }
       },
       async addReview({ commit }, review) {
@@ -68,7 +68,7 @@ export default {
           const {data} = await this.$axios.post('/reviews', formData);
           commit("ADD_REVIEW", data);
         } catch (error) {
-          
+          throw new Error(error);       
         }
         
       },
@@ -82,7 +82,7 @@ export default {
           const { data: { review } } = await this.$axios.post(`/reviews/${editedReview.id}`, formData);
           commit("EDIT_REVIEW", review);
         } catch (error) {
-
+          throw new Error(error);
         }
       },
       async removeReview({ commit }, review) {
@@ -90,7 +90,7 @@ export default {
           await this.$axios.delete(`/reviews/${review.id}`);
           commit("REMOVE_REVIEW", review);
         } catch (error) {
-
+          throw new Error(error);
         }
       }
     }

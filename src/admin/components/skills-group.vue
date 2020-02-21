@@ -18,6 +18,7 @@
                     v-for="skill in category.skills"
                     :key="skill.id"
                     :skill="skill"
+                    @errorEvent="$emit('errorEvent', $event)"
                     )
 
     .about-form__bottom-row
@@ -74,7 +75,7 @@ export default {
         this.skill.title = "";
         this.skill.percent = "";
       } catch (error) {
-
+        this.$emit('errorEvent', error);
       } finally {
         this.loading = false;
       }
@@ -84,7 +85,7 @@ export default {
         await this.editCategory(this.editedCategory);
         this.editmode = false;
       } catch (error) {
-
+        this.$emit('errorEvent', error);
       }
     },
     async removeExistedCategory() {
@@ -93,7 +94,7 @@ export default {
         try {
           await this.removeCategory(this.category);
         } catch (error) {
-
+          this.$emit('errorEvent', error);
         }
       }
     }

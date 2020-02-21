@@ -19,10 +19,13 @@ module.exports = {
     rules: {
         "no-plusplus": "off",
         "no-alert": "off",
-        "no-param-reassign": { 
-            "props": true, 
-            "ignorePropertyModificationsFor": ["layer"] 
-            /** lаyer - слой параллакса, DOM объект */
-        }
+        "no-param-reassign": ["error", { "props": true }],
+        "no-param-reassign": 
+            ["error", 
+                { "props": true, 
+                "ignorePropertyModificationsFor": ["layer"]
+                /** lаyer - слой параллакса, DOM объект */  
+            }] 
+            
     }
 };

@@ -6,6 +6,7 @@ section.works
           :formType="formType"
           @hideForm="workFormIsActive = false"
           :editedWork="editedWork"
+          @errorEvent="handleErrorFromChild" 
         )
         ul.works__snippets.snippets                                                                                
             li.snippets-item
@@ -16,7 +17,11 @@ section.works
                 workSnippet(
                   :work="work"
                   @openEditForm="openEditForm"
+                  @errorEvent="handleErrorFromChild" 
                 )
+        error-tooltip(
+          :errorText="errorText"
+        )                
 </template>
 
 <script>
@@ -29,13 +34,15 @@ import {
 export default {
   components: {
     workForm: () => import("../work-form"),
-    workSnippet: () => import("../work-snippet")
+    workSnippet: () => import("../work-snippet"),
+    errorTooltip: () => import("../error-tooltip")
   },
   data () {
     return {
       formType: "",
       workFormIsActive: false,
-      editedWork: {}
+      editedWork: {},
+      errorText: ""
     }
   },
   computed: {
@@ -57,7 +64,10 @@ export default {
       this.editedWork = {...work};
       this.formType = 'edit';
       this.workFormIsActive = true;
-    }
+    },
+    handleErrorFromChild(error){
+    this.errorText = error;
+  }
   },
   
 }

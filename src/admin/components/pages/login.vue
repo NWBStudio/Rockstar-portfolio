@@ -25,14 +25,14 @@ import $axios from "../../requests";
 
 export default {
   components: {
-    errorTooltip: () => import("../errors-tooltip")
+    errorTooltip: () => import("../error-tooltip")
   },
   data: () => ({
     user: {
       name: "",
       password: ""
     },
-    errorText: "Ошибка"
+    errorText: ""
   }),
   computed: {
     submitIsDisabled(){
@@ -45,6 +45,7 @@ export default {
       if(this.user.password)
         passwordFieldIsFilled = true;
 
+      // eslint-disable-next-line no-unneeded-ternary
       submitIsDisabled = (nameFieldIsFilled && passwordFieldIsFilled)? false: true 
      
       return submitIsDisabled;

@@ -21,8 +21,12 @@ section.about
             li.about-form.edit-form(v-for="category in categories")
                 skills-group(
                   :category="category"
-                  ref="skills" 
+                  ref="skills"
+                  @errorEvent="handleErrorFromChild" 
                 )
+        error-tooltip(
+          :errorText="errorText"
+        )
 </template>
 
 <script>
@@ -33,11 +37,13 @@ import {
 
 export default {
   components: {
-    skillsGroup: () => import("../skills-group")
+    skillsGroup: () => import("../skills-group"),
+    errorTooltip: () => import("../error-tooltip")
   },
   data: () => ({
     title: "",
-    newForm: false
+    newForm: false,
+    errorText:""
   }),
   computed: {
     ...mapState("categories", {
@@ -58,11 +64,12 @@ export default {
         this.newForm = false;
         this.title = "";
       } catch (error) {
-        /** должно быть прогнано через хелпер до нормального вида и
-         * выведено в тултип из стайлгайда */
-        alert(error.message);
+        this.errorText = error;
       }
-    }
+    }, 
+    handleErrorFromChild(error){
+    this.errorText = error;
+  }
   }
 };
 </script>

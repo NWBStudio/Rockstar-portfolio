@@ -42,7 +42,7 @@ export default {
         const { data } = await this.$axios.get("/works/260");
         commit("SET_WORKS", data);
       } catch (error) {
-
+        throw new Error(error);
       }
     },
     async addWork({ commit }, work) {
@@ -55,7 +55,7 @@ export default {
         const { data } = await this.$axios.post('/works', formData);
         commit("ADD_WORK", data);
       } catch (error) {
-
+        throw new Error(error);
       }
 
     },
@@ -69,7 +69,7 @@ export default {
         const { data: { work } } = await this.$axios.post(`/works/${editedWork.id}`, formData);
         commit("EDIT_WORK", work);
       } catch (error) {
-
+        throw new Error(error);
       }
     },
     async removeWork({ commit }, work) {
@@ -77,7 +77,7 @@ export default {
         await this.$axios.delete(`/works/${work.id}`);
         commit("REMOVE_WORK", work);
       } catch (error) {
-
+        throw new Error(error);
       }
     }
   }

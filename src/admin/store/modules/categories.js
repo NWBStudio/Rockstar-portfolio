@@ -117,7 +117,7 @@ export default {
                 const { data : { category } } = await this.$axios.post(`/categories/${editedCategory.id}`, { title });
                 commit("EDIT_CATEGORY", category);
             } catch (error) {
-                
+                throw new Error(error);
             }
         },
         async removeCategory( { commit }, category){
@@ -125,7 +125,7 @@ export default {
                 await this.$axios.delete(`/categories/${category.id}`);
                 commit("REMOVE_CATEGORY", category);
             } catch (error) {
-                
+                throw new Error(error);
             }
         },
         async fetchCategories({
@@ -141,7 +141,7 @@ export default {
                 commit("SET_CATEGORIES", data);
                 
             } catch (error) {
-                
+                throw new Error(error);
             }
         }
     }

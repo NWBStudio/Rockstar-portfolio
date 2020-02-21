@@ -37,7 +37,7 @@ export default {
             try {
               await this.removeReview(this.review);
             } catch (error) {
-              
+              this.$emit('errorEvent', error);
             }
         }   
     }
