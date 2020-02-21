@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     async login() {
-      if(submitIsDisabled === false){
+      if(this.submitIsDisabled === false){
         try {
           // Получаем токен 
           const response = await $axios.post("/login", this.user);

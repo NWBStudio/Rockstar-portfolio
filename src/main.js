@@ -12,6 +12,5 @@ if (process.env.NODE_ENV === "development") {
   режиме нужно следить и при их изменении перезагружать 
   страничку */
   require("file-loader!./pug/pages/index.pug");
-  require("file-loader!./pug/pages/login.pug");
 }
 

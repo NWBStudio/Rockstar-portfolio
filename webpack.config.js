@@ -94,9 +94,8 @@ module.exports = (env, argv) => {
 
   const config = {
     entry: { // точки входа в которых подключаются зависимости 
-      main: "./src/main.js",
-      admin: "./src/admin/main.js",
-      login: "./src/main.js"
+      main: ["@babel/polyfill", "./src/main.js"],
+      admin: ["@babel/polyfill", "./src/admin/main.js"]
     },
     output: {// правила формирования выходных файлов и каталога в который их складывать
       path: path.resolve(__dirname, "./dist"),
@@ -131,11 +130,6 @@ module.exports = (env, argv) => {
         template: "src/admin/index.pug",
         filename: "admin/index.html",
         chunks: ["admin"]
-      }),
-      new HtmlWebpackPlugin({
-        template: "src/pug/pages/login.pug",
-        filename: "login/index.html",
-        chunks: ["login"]
       }),
       new SpriteLoaderPlugin({ plainSprite: true }), /* собирает файл со спрайтом
       если использовать только loader, то спрайт подключается целиком на страницу */
