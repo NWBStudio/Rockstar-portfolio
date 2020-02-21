@@ -12,7 +12,7 @@
             .form__input-line
                 .form__label-icon.login-form__key-icon       
                 input(v-model="user.password" type="password" placeholder="Введите пароль" name="password" required).form__input
-        button.button.button--login.form__submit-btn(type= "submit") отправить
+        button.button.button--login.form__submit-btn(type= "submit" :disabled="submitIsDisabled") отправить
         button(type="button").login-form__close-btn
             .form__label-icon.login-form__close-icon
     error-tooltip(
@@ -34,26 +34,44 @@ export default {
     },
     errorText: "Ошибка"
   }),
+  computed: {
+    submitIsDisabled(){
+      let nameFieldIsFilled = false;
+      let passwordFieldIsFilled = false;
+      let submitIsDisabled = true;
+
+      if(this.user.name)
+        nameFieldIsFilled = true;
+      if(this.user.password)
+        passwordFieldIsFilled = true;
+
+      submitIsDisabled = (nameFieldIsFilled && passwordFieldIsFilled)? false: true 
+     
+      return submitIsDisabled;
+    }
+  },
   methods: {
     async login() {
-      try {
-        // Получаем токен 
-        const response = await $axios.post("/login", this.user);
-        const {
-          token
-        } = response.data;
+      if(submitIsDisabled === false){
+        try {
+          // Получаем токен 
+          const response = await $axios.post("/login", this.user);
+          const {
+            token
+          } = response.data;
 
-        // Кладём его в хранилище
-        localStorage.setItem("token", token);
+          // Кладём его в хранилище
+          localStorage.setItem("token", token);
 
-        // Для авторизации без перезагрузки страницы
-        $axios.defaults.headers.Authorization = `Bearer ${token}`;
+          // Для авторизации без перезагрузки страницы
+          $axios.defaults.headers.Authorization = `Bearer ${token}`;
 
-        /** Перенаправляем пользователя без возможности
-         *  вернуться на страницу авторизации */
-        this.$router.replace("/");
-      } catch (error) {
-          this.errorText = error.response.data.error;
+          /** Перенаправляем пользователя без возможности
+           *  вернуться на страницу авторизации */
+          this.$router.replace("/");
+        } catch (error) {
+            this.errorText = error.response.data.error;
+        }
       }
     }
   }
