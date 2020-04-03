@@ -1,13 +1,16 @@
-section.fullscreen-section.hero
+section.fullscreen-section.hero#hero
     .container.hero__inner
         header.header.hero__header
           span.header__logo вк
-          +nav('header__nav')
+          nav.nav.header__nav
+            ul.nav__list
+                li.nav__item(v-for="item in navList")
+                  a.nav__link(v-scroll-to="item[1]") {{ item[0] }}
           +social('header__social')
           button.header__burger-menu-btn(type="button")
             +icon('burger-menu', 'header__burger-menu-icon')
         .hero__main
             .hero__text Личный сайт#[br] веб-разработчика
             h1.hero__title Владимир Куприенков
-        button.hero__scroll(type="button") Скролл
+        button.hero__scroll(type="button" v-scroll-to="{el: '#about', offset: -100}") Скролл
             +icon('scroll', 'hero__scroll-icon')    

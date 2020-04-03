@@ -86,6 +86,9 @@ const worksWidget = new Vue({
         this.onResize(); // определение ширины экрана при загрузке страницы
         window.addEventListener('resize', this.onResize) // дальнейшее слежение за изменением ширины экрана
     },
+    async mounted () {
+        
+    },
     beforeDestroy() {
         window.removeEventListener('resize', this.onResize)
     },

@@ -1,5 +1,6 @@
 import '@babel/polyfill';
 import "./styles/main.pcss";
+import "./scripts/hero";
 import "./scripts/skills";
 import "./scripts/reviews";
 import "./scripts/parallax-rockfest";
