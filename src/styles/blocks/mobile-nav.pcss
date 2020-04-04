@@ -1,0 +1,65 @@
+.mobile-nav{
+  position: absolute;
+  background-color: $white;
+  height: 101vh;
+  width: 50%;
+  top: 0;
+  right: -100%;
+  z-index: 100;
+  display: none;
+  transition: transform 0.5s;
+  padding-left: 100px;
+  &--active{
+    transform: translateX(-200%)
+  }
+  @include tablets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @include phones {
+    padding-left: 20px;
+  }
+}
+
+.mobile-nav__list{
+  margin-bottom: 50px;
+}
+
+.mobile-nav__item{
+  margin-bottom: 15px;
+}
+
+.mobile-nav__link{
+  font-size: 30px;
+  line-height: 48px;
+  font-weight: $semibold;
+  color: $dark-grayish-blue;
+}
+
+.mobile-nav__social{
+  .social__link {
+    width: 40px;
+    height: 40px;
+  }
+
+.social__icon {
+    width: 40px;
+    height: 40px;
+    fill: $dark-grayish-blue;
+  }
+}
+
+.mobile-nav__close-btn{
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  width: 50px;
+  /* height: 50px; */
+}
+
+.mobile-nav__close-icon{
+  width: 100%;
+  /* height: 100%; */
+  fill: $dark-grayish-blue;
+}

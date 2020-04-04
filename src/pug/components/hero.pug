@@ -7,7 +7,7 @@ section.fullscreen-section.hero#hero
                 li.nav__item(v-for="item in navList")
                   a.nav__link(v-scroll-to="item[1]") {{ item[0] }}
           +social('header__social')
-          button.header__burger-menu-btn(type="button")
+          button.header__burger-menu-btn#burgerMenu(type="button")
             +icon('burger-menu', 'header__burger-menu-icon')
         .hero__main
             .hero__text Личный сайт#[br] веб-разработчика

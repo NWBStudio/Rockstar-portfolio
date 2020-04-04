@@ -1,0 +1,7 @@
+nav.mobile-nav#mobile-nav
+  ul.mobile-nav__list
+    li.mobile-nav__item(v-for="item in navList")
+      a.mobile-nav__link(v-scroll-to="{el: item[1], onStart: scrollOnStart}") {{ item[0] }}
+  +social('mobile-nav__social')
+  button.mobile-nav__close-btn#mobileNavCloseBtn
+    +icon('cross', 'mobile-nav__close-icon')
